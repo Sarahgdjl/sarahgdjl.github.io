@@ -3,7 +3,7 @@
     "firstName": "Sarah",
     "lastName": "Goudjil",
     "title": "Data Scientist · Algiers",
-    "description": "M.Sc. Data Science student with a background in <strong>psychology & neuroscience</strong>. I build models that sit at the intersection of human behavior and data.",
+    "description": "M.Sc. Data Science student with a background in <strong>psychology &amp; neuroscience</strong>. I build models that sit at the intersection of human behavior and data.",
     "stats": [
       { "value": "6", "label": "projects" },
       { "value": "3", "label": "domains" },
@@ -12,18 +12,18 @@
   },
   "about": {
     "paragraphs": [
-      "I'm a first-year Data Science master's student based in <strong>Algiers, Algeria</strong>, with a bachelor's degree in <strong>Computer Systems</strong>. My background in software engineering shapes how I approach problems — focusing on scalable, data-driven solutions.",
-      "I'm currently developing a portfolio of projects at the intersection of <strong>data science and web technologies</strong>, including predictive modeling, data analysis, and full-stack applications with integrated ML components.",
-      "I prioritize hands-on learning, working with real datasets, and understanding the statistical foundations behind each model.",
-      "Outside of tech, I design and sew clothes — an activity that reinforces my attention to detail and iterative approach to building systems."
+      "I'm a first-year Data Science master's student based in <strong>Algiers, Algeria</strong>, with a bachelor's degree in <strong>Computer Systems</strong>. My background in software engineering and systems architecture shapes how I approach problems — focusing on building scalable, efficient, and data-driven solutions.",
+      "I'm currently developing a portfolio of projects at the intersection of <strong>data science and web technologies</strong>, including predictive modeling, data analysis, and full-stack applications with integrated machine learning components.",
+      "I prioritize hands-on learning, working with real datasets, and understanding the statistical and algorithmic foundations behind each model — from feature engineering to evaluation.",
+      "Outside of tech, I design and sew clothes — an activity that reinforces my attention to detail and iterative approach to building and improving systems."
     ],
     "info": [
-      { "key": "Location", "value": "Algiers, Algeria" },
-      { "key": "Education", "value": "M.Sc. Data Science (M1)" },
+      { "key": "Location",   "value": "Algiers, Algeria" },
+      { "key": "Education",  "value": "M.Sc. Data Science (M1)" },
       { "key": "Background", "value": "Computer Systems" },
-      { "key": "Focus", "value": "Machine Learning · Data Analysis · Web Apps" },
-      { "key": "Languages", "value": "French, English, Arabic" },
-      { "key": "Stack", "value": "Python · SQL · JavaScript · APIs" }
+      { "key": "Focus",      "value": "Machine Learning · Data Analysis · Web Applications" },
+      { "key": "Languages",  "value": "French, English, Arabic" },
+      { "key": "Stack",      "value": "Python · SQL · JavaScript · APIs" }
     ]
   },
   "skills": [
@@ -41,14 +41,14 @@
     },
     {
       "category": "Domain Knowledge",
-      "items": ["Survey data (NHANES)", "Geospatial (NASA FIRMS)", "NLP basics", "Stats & probability"]
+      "items": ["Survey data (NHANES)", "Geospatial (NASA FIRMS)", "NLP basics", "Stats & probability", "Psych research methods"]
     }
   ],
   "projects": [
     {
       "title": "Depression Risk Prediction Model",
       "label": "Featured · 01",
-      "desc": "A clinical risk prediction model using the CDC NHANES survey dataset. Combines behavioral, demographic, and physiological variables to predict depression risk scores.",
+      "desc": "A clinical risk prediction model using the CDC NHANES survey dataset. Combines behavioral, demographic, and physiological variables to predict depression risk scores — and explores what self-reported survey data can, and can't, tell us about mental health outcomes.",
       "tags": ["classification", "health data", "NHANES", "scikit-learn", "feature selection", "neuroscience"],
       "status": "live",
       "featured": true,
@@ -71,15 +71,42 @@
       "status": "planned",
       "featured": false,
       "link": "#"
+    },
+    {
+      "title": "Conflict Analytics",
+      "label": "Conflict",
+      "desc": "Quantitative analysis of conflict event data. Spatial and temporal pattern detection combining NLP and geospatial methods on open-source datasets.",
+      "tags": ["NLP", "geospatial", "ACLED", "pattern analysis"],
+      "status": "planned",
+      "featured": false,
+      "link": "#"
+    },
+    {
+      "title": "Job Market Analysis",
+      "label": "Labor Market",
+      "desc": "Scraping and analyzing data science job postings to extract skill demand trends, salary patterns, and geographic distributions. A meta-project built from genuine career research.",
+      "tags": ["web scraping", "NLP", "pandas", "visualization"],
+      "status": "planned",
+      "featured": false,
+      "link": "#"
+    },
+    {
+      "title": "Behavioral Change Patterns",
+      "label": "Behavioral",
+      "desc": "Personal exploratory project using data to study procrastination, avoidance, and the gap between self-awareness and action. Psych theory meets self-tracking data.",
+      "tags": ["behavioral data", "psychology", "self-tracking", "exploratory"],
+      "status": "planned",
+      "featured": false,
+      "link": "#"
     }
   ],
   "contact": {
     "email": "your@email.com",
     "blurb": "I'm open to internship opportunities, research collaborations, and connecting with people working at the intersection of data, health, and behavior.",
     "links": [
-      { "platform": "GitHub", "url": "https://github.com/sarahgdjl" },
+      { "platform": "GitHub",   "url": "https://github.com/sarahgdjl" },
       { "platform": "LinkedIn", "url": "https://linkedin.com/in/yourprofile" },
-      { "platform": "Kaggle", "url": "https://kaggle.com/yourusername" }
+      { "platform": "Kaggle",   "url": "https://kaggle.com/yourusername" }
     ]
   }
 }
