@@ -2,12 +2,21 @@
   "hero": {
     "firstName": "Sarah",
     "lastName": "Goudjil",
-    "title": "Data Scientist · Algiers",
-    "description": "M.Sc. Data Science student with a background in <strong>psychology &amp; neuroscience</strong>. I build models that sit at the intersection of human behavior and data.",
+    "title": "data scientist & researcher",
+    "description": "M.Sc. Data Science student with a background in psychology & neuroscience. I build models that sit at the intersection of human behavior and data.",
     "stats": [
-      { "value": "6", "label": "projects" },
-      { "value": "3", "label": "domains" },
-      { "value": "M1", "label": "current year" }
+      {
+        "value": "6",
+        "label": "projects"
+      },
+      {
+        "value": "3",
+        "label": "domains"
+      },
+      {
+        "value": "M1",
+        "label": "current year"
+      }
     ]
   },
   "about": {
@@ -18,30 +27,73 @@
       "Outside of tech, I design and sew clothes — an activity that reinforces my attention to detail and iterative approach to building and improving systems."
     ],
     "info": [
-      { "key": "Location",   "value": "Algiers, Algeria" },
-      { "key": "Education",  "value": "M.Sc. Data Science (M1)" },
-      { "key": "Background", "value": "Computer Systems" },
-      { "key": "Focus",      "value": "Machine Learning · Data Analysis · Web Applications" },
-      { "key": "Languages",  "value": "French, English, Arabic" },
-      { "key": "Stack",      "value": "Python · SQL · JavaScript · APIs" }
+      {
+        "key": "Location",
+        "value": "Algiers, Algeria"
+      },
+      {
+        "key": "Education",
+        "value": "M.Sc. Data Science (M1)"
+      },
+      {
+        "key": "Background",
+        "value": "Computer Systems"
+      },
+      {
+        "key": "Focus",
+        "value": "Machine Learning · Data Analysis · Web Applications"
+      },
+      {
+        "key": "Languages",
+        "value": "French, English, Arabic"
+      },
+      {
+        "key": "Stack",
+        "value": "Python · SQL · JavaScript · APIs"
+      }
     ]
   },
   "skills": [
     {
       "category": "Languages & Tools",
-      "items": ["Python", "SQL", "R", "Jupyter", "Kaggle", "Git"]
+      "items": [
+        "Python",
+        "SQL",
+        "R",
+        "Jupyter",
+        "Kaggle",
+        "Git"
+      ]
     },
     {
       "category": "Machine Learning",
-      "items": ["scikit-learn", "XGBoost", "Random Forest", "Logistic Reg.", "Feature Engineering"]
+      "items": [
+        "scikit-learn",
+        "XGBoost",
+        "Random Forest",
+        "Logistic Reg.",
+        "Feature Engineering"
+      ]
     },
     {
       "category": "Data & Visualization",
-      "items": ["pandas", "numpy", "matplotlib", "seaborn", "plotly"]
+      "items": [
+        "pandas",
+        "numpy",
+        "matplotlib",
+        "seaborn",
+        "plotly"
+      ]
     },
     {
       "category": "Domain Knowledge",
-      "items": ["Survey data (NHANES)", "Geospatial (NASA FIRMS)", "NLP basics", "Stats & probability", "Psych research methods"]
+      "items": [
+        "Survey data (NHANES)",
+        "Geospatial (NASA FIRMS)",
+        "NLP basics",
+        "Stats & probability",
+        "Psych research methods"
+      ]
     }
   ],
   "projects": [
@@ -49,7 +101,14 @@
       "title": "Depression Risk Prediction Model",
       "label": "Featured · 01",
       "desc": "A clinical risk prediction model using the CDC NHANES survey dataset. Combines behavioral, demographic, and physiological variables to predict depression risk scores — and explores what self-reported survey data can, and can't, tell us about mental health outcomes.",
-      "tags": ["classification", "health data", "NHANES", "scikit-learn", "feature selection", "neuroscience"],
+      "tags": [
+        "classification",
+        "health data",
+        "NHANES",
+        "scikit-learn",
+        "feature selection",
+        "neuroscience"
+      ],
       "status": "live",
       "featured": true,
       "link": "#"
@@ -58,7 +117,12 @@
       "title": "Algeria Wildfire Risk Mapping",
       "label": "Geospatial",
       "desc": "Geospatial wildfire risk model using NASA FIRMS fire detection data. Maps historical patterns across Algerian territory to produce regional risk scores.",
-      "tags": ["geospatial", "NASA FIRMS", "geopandas", "risk modeling"],
+      "tags": [
+        "geospatial",
+        "NASA FIRMS",
+        "geopandas",
+        "risk modeling"
+      ],
       "status": "planned",
       "featured": false,
       "link": "#"
@@ -67,7 +131,12 @@
       "title": "Sales & Commerce Analytics",
       "label": "Commerce",
       "desc": "End-to-end sales prediction and customer segmentation pipeline. Purchasing behavior patterns and a forecasting model built on retail data.",
-      "tags": ["regression", "clustering", "EDA", "time series"],
+      "tags": [
+        "regression",
+        "clustering",
+        "EDA",
+        "time series"
+      ],
       "status": "planned",
       "featured": false,
       "link": "#"
@@ -76,7 +145,12 @@
       "title": "Conflict Analytics",
       "label": "Conflict",
       "desc": "Quantitative analysis of conflict event data. Spatial and temporal pattern detection combining NLP and geospatial methods on open-source datasets.",
-      "tags": ["NLP", "geospatial", "ACLED", "pattern analysis"],
+      "tags": [
+        "NLP",
+        "geospatial",
+        "ACLED",
+        "pattern analysis"
+      ],
       "status": "planned",
       "featured": false,
       "link": "#"
@@ -84,8 +158,13 @@
     {
       "title": "Job Market Analysis",
       "label": "Labor Market",
-      "desc": "Scraping and analyzing data science job postings to extract skill demand trends, salary patterns, and geographic distributions. A meta-project built from genuine career research.",
-      "tags": ["web scraping", "NLP", "pandas", "visualization"],
+      "desc": "Scraping and analyzing data science job postings to extract skill demand trends, salary patterns, and geographic distributions.",
+      "tags": [
+        "web scraping",
+        "NLP",
+        "pandas",
+        "visualization"
+      ],
       "status": "planned",
       "featured": false,
       "link": "#"
@@ -94,7 +173,12 @@
       "title": "Behavioral Change Patterns",
       "label": "Behavioral",
       "desc": "Personal exploratory project using data to study procrastination, avoidance, and the gap between self-awareness and action. Psych theory meets self-tracking data.",
-      "tags": ["behavioral data", "psychology", "self-tracking", "exploratory"],
+      "tags": [
+        "behavioral data",
+        "psychology",
+        "self-tracking",
+        "exploratory"
+      ],
       "status": "planned",
       "featured": false,
       "link": "#"
@@ -104,9 +188,18 @@
     "email": "your@email.com",
     "blurb": "I'm open to internship opportunities, research collaborations, and connecting with people working at the intersection of data, health, and behavior.",
     "links": [
-      { "platform": "GitHub",   "url": "https://github.com/sarahgdjl" },
-      { "platform": "LinkedIn", "url": "https://linkedin.com/in/yourprofile" },
-      { "platform": "Kaggle",   "url": "https://kaggle.com/yourusername" }
+      {
+        "platform": "GitHub",
+        "url": "https://github.com/sarahgdjl"
+      },
+      {
+        "platform": "LinkedIn",
+        "url": "https://www.linkedin.com/in/sarah-goudjil-5b7384300/"
+      },
+      {
+        "platform": "Kaggle",
+        "url": "https://kaggle.com/yourusername"
+      }
     ]
   }
 }
