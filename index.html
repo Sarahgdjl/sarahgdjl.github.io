@@ -50,7 +50,7 @@
     overflow-x: hidden;
     position: relative;
   }
-  /* improved noise grain overlay + subtle vignette */
+  /* noise grain + vignette */
   body::before {
     content: '';
     position: fixed;
@@ -69,7 +69,7 @@
     z-index: 0;
   }
 
-  /* ===== SCROLL REVEAL ANIMATIONS (intersection + transitions) ===== */
+  /* ===== SCROLL REVEAL ANIMATIONS ===== */
   .reveal {
     opacity: 0;
     transform: translateY(28px);
@@ -81,9 +81,8 @@
   }
   .reveal-delay-1 { transition-delay: 0.1s; }
   .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
 
-  /* NAVIGATION - enhanced blur and hover */
+  /* NAVIGATION */
   nav {
     position: fixed;
     top: 0;
@@ -139,8 +138,17 @@
   .nav-links a:hover { color: var(--text2); }
   .nav-links a:hover::after { width: 100%; }
 
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 3rem; }
-  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 10rem 3rem 6rem; max-width: 1080px; margin: 0 auto; position: relative; z-index: 2; }
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10rem 3rem 6rem;
+    max-width: 1080px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
   .hero-kicker {
     display: flex;
     align-items: center;
@@ -209,8 +217,6 @@
     transition: all 0.35s var(--transition-smooth);
     cursor: pointer;
     text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
   }
   .btn-red {
     background: var(--red);
@@ -252,7 +258,6 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     opacity: 0.7;
-    transition: opacity 0.3s;
   }
   .hero-scroll::before {
     content: '';
@@ -304,7 +309,6 @@
   .info-stack {
     display: flex;
     flex-direction: column;
-    gap: 0;
     border: 1px solid var(--border);
     border-radius: 4px;
     overflow: hidden;
@@ -361,7 +365,6 @@
     padding: 5px 12px;
     border-radius: 20px;
     transition: all 0.2s;
-    backdrop-filter: blur(2px);
   }
   .chip:hover {
     color: var(--blue2);
@@ -369,80 +372,60 @@
     transform: translateY(-2px);
     background: rgba(58,123,213,0.2);
   }
-  .projects-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    background: var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .proj {
+
+  /* ========== NEW PROJECT CARDS LAYOUT (grid with responsive columns) ========== */
+  .projects-grid {
     display: grid;
-    grid-template-columns: 56px 1fr auto;
-    gap: 0;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  /* featured card can span full width on first row if desired, but we treat uniformly as cards */
+  .project-card {
     background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.4s var(--transition-smooth);
     text-decoration: none;
     color: inherit;
-    transition: all 0.4s var(--transition-smooth);
-    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    backdrop-filter: blur(2px);
+    position: relative;
   }
-  .proj:last-child { border-bottom: none; }
-  .proj:hover {
-    background: var(--card2);
-    transform: translateX(6px) scale(1.002);
-    box-shadow: -4px 0 0 var(--red2);
-  }
-  .proj.featured {
-    grid-template-columns: 1fr;
-    display: block;
+  .project-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(232,76,61,0.4);
+    box-shadow: 0 20px 32px -12px rgba(0,0,0,0.5);
     background: var(--card2);
   }
-  .proj:hover .proj-arrow { color: var(--red2); transform: translate(4px, -3px); }
-  .proj-num-col { padding: 1.75rem 0 1.75rem 1.5rem; display: flex; align-items: flex-start; padding-top: 1.9rem; }
-  .proj-num { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; }
-  .proj-body { padding: 1.75rem 1.5rem; }
-  .proj-featured-inner { padding: 2.5rem; }
-  .proj-meta { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 0.7rem; flex-wrap: wrap; }
-  .proj-label {
+  .card-header {
+    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .card-label {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
     color: var(--red2);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-  }
-  .proj-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.3rem;
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 0.6rem;
-    line-height: 1.25;
-  }
-  .proj.featured .proj-title { font-size: 1.85rem; margin-bottom: 0.85rem; }
-  .proj-desc { font-size: 13.5px; color: var(--text2); line-height: 1.75; font-weight: 300; }
-  .proj-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
-  .proj-chip {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--blue2);
-    border: 1px solid var(--border-blue);
-    background: var(--blue-glow);
-    padding: 3px 10px;
+    background: var(--red-dim);
+    padding: 2px 8px;
     border-radius: 20px;
   }
-  .proj-arrow-col {
-    padding: 1.75rem 1.8rem 1.75rem 0;
-    display: flex;
-    align-items: center;
+  .status-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
   }
-  .proj-arrow { font-size: 1.2rem; color: var(--muted); transition: all 0.3s var(--transition-bounce); }
   .status-dot {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
   }
   .status-dot.live { color: var(--red2); }
   .status-dot.live::before {
@@ -458,6 +441,87 @@
     0%,100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.4; transform: scale(0.9); }
   }
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text);
+    padding: 0 1.5rem;
+    margin: 0.5rem 0 0.75rem;
+    line-height: 1.25;
+    transition: color 0.2s;
+  }
+  .project-card:hover .card-title {
+    color: var(--red2);
+  }
+  .card-desc {
+    font-size: 13.5px;
+    color: var(--text2);
+    line-height: 1.7;
+    padding: 0 1.5rem;
+    font-weight: 300;
+    flex: 1;
+  }
+  .card-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1.2rem 1.5rem 1.5rem 1.5rem;
+    margin-top: auto;
+  }
+  .proj-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--blue2);
+    border: 1px solid var(--border-blue);
+    background: var(--blue-glow);
+    padding: 3px 10px;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+  .project-card:hover .proj-chip {
+    border-color: var(--blue2);
+    background: rgba(91,156,246,0.15);
+  }
+  .card-arrow {
+    position: absolute;
+    bottom: 1rem;
+    right: 1.2rem;
+    font-size: 1.2rem;
+    color: var(--muted);
+    opacity: 0;
+    transition: all 0.3s var(--transition-bounce);
+  }
+  .project-card:hover .card-arrow {
+    opacity: 1;
+    transform: translate(4px, -4px);
+    color: var(--red2);
+  }
+
+  /* Featured project special styling (emphasize first card) */
+  .project-card.featured {
+    background: linear-gradient(145deg, var(--card2) 0%, #130b0e 100%);
+    border-left: 3px solid var(--red2);
+  }
+  .project-card.featured .card-title {
+    font-size: 1.7rem;
+  }
+
+  /* responsive for tablets & mobile */
+  @media (max-width: 900px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+  @media (max-width: 700px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+    .card-title { font-size: 1.4rem; }
+    .project-card.featured .card-title { font-size: 1.6rem; }
+  }
+
   #contact { background: var(--bg2); }
   .contact-layout {
     display: grid;
@@ -490,7 +554,6 @@
   .link-list {
     display: flex;
     flex-direction: column;
-    gap: 0;
     border: 1px solid var(--border);
     border-radius: 6px;
     overflow: hidden;
@@ -535,7 +598,6 @@
 
   @media (max-width: 768px) {
     nav { padding: 0.9rem 1.5rem; }
-    nav.scrolled { padding: 0.6rem 1.5rem; }
     #hero { padding: 8rem 1.5rem 4rem; }
     .hero-body { grid-template-columns: 1fr; gap: 2rem; }
     .hero-right { align-items: flex-start; }
@@ -544,8 +606,6 @@
     .section-inner { padding: 3.5rem 1.5rem; }
     .about-layout, .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
     .skills-layout { grid-template-columns: 1fr; }
-    .proj { grid-template-columns: 1fr; }
-    .proj-num-col, .proj-arrow-col { display: none; }
     footer { flex-direction: column; gap: 0.6rem; text-align: center; }
     .eyebrow-title { font-size: 1.8rem; }
   }
@@ -590,20 +650,29 @@
 <div class="divider"></div>
 <section id="skills"><div class="section-inner"><div class="eyebrow"><span class="eyebrow-num">02</span><h2 class="eyebrow-title">Skills</h2><div class="eyebrow-rule"></div></div><div class="skills-layout" id="skills-layout"></div></div></section>
 <div class="divider"></div>
-<section id="projects"><div class="section-inner"><div class="eyebrow"><span class="eyebrow-num">03</span><h2 class="eyebrow-title">Projects</h2><div class="eyebrow-rule"></div></div><div class="projects-layout" id="projects-layout"></div></div></section>
+<section id="projects">
+  <div class="section-inner">
+    <div class="eyebrow">
+      <span class="eyebrow-num">03</span>
+      <h2 class="eyebrow-title">Projects</h2>
+      <div class="eyebrow-rule"></div>
+    </div>
+    <div class="projects-grid" id="projects-grid"></div>
+  </div>
+</section>
 <div class="divider"></div>
 <section id="contact"><div class="section-inner"><div class="eyebrow"><span class="eyebrow-num">04</span><h2 class="eyebrow-title">Contact</h2><div class="eyebrow-rule"></div></div><div class="contact-layout"><div><h3 class="contact-heading">Let's<br/><em>collaborate.</em></h3><p class="contact-sub" id="contact-blurb"></p><a class="contact-mail" id="contact-email" href="#">loading...</a></div><div class="link-list" id="contact-links"></div></div></div></section>
 <footer><span class="footer-sig" id="footer-name">Sarah Goudjil</span><span class="footer-mono">© 2025 · Algiers, DZ</span></footer>
 
 <script>
-  // Enhanced data with more transitions and projects
+  // Enhanced portfolio dataset
   const portfolioData = {
     hero: {
       firstName: "Sarah",
       lastName: "Goudjil",
       title: "ML Engineer · AI Architect",
       description: "Building <strong>intelligent systems</strong> that fuse data science with human insight. <strong>5+ years</strong> shaping production-grade AI & analytics pipelines.",
-      stats: [{ value: "12+", label: "Projects" }, { value: "4", label: "Patents" }, { value: "8", label: "Publications" }]
+      stats: [{ value: "15+", label: "Projects" }, { value: "4", label: "Patents" }, { value: "8", label: "Publications" }]
     },
     about: {
       paragraphs: [
@@ -624,11 +693,12 @@
       { category: "Generative AI", items: ["LangChain", "RAG", "HuggingFace", "LlamaIndex", "VAEs"] }
     ],
     projects: [
-      { featured: true, label: "Featured · Research", title: "MediScan AI – Diagnostic Transformer", desc: "Multi-modal vision-language model for radiology reports, achieving 94% accuracy. Deployed in partnership with university hospital.", tags: ["PyTorch", "ViT", "LLaVA", "ONNX"], status: "live", link: "#" },
-      { label: "02", title: "AtmoSense - Climate Forecasting", desc: "Spatiotemporal transformer for extreme weather prediction, reducing error by 23% compared to baseline.", tags: ["Graph Neural Nets", "Xarray", "Earth Engine"], status: "live", link: "#" },
-      { label: "03", title: "FakeGuard NLP", desc: "Real-time misinformation detection for low-resource languages (Darija, Kabyle).", tags: ["BERT", "FastText", "Streamlit"], status: "live", link: "#" },
-      { label: "04", title: "AutoML Pipeline Engine", desc: "Open-source library that automates feature engineering & hyperparameter tuning for tabular data.", tags: ["Ray", "Optuna", "Pandas"], status: "soon", link: "#" },
-      { label: "05", title: "GraphRec - Social Recommender", desc: "Heterogeneous GNN for e-commerce recommendation with cold-start mitigation.", tags: ["DGL", "GraphSage", "Neo4j"], status: "live", link: "#" }
+      { featured: true, label: "Featured Research", title: "MediScan AI – Diagnostic Transformer", desc: "Multi-modal vision-language model for radiology reports, achieving 94% accuracy. Deployed in hospital partnership.", tags: ["PyTorch", "ViT", "LLaVA", "ONNX"], status: "live", link: "#" },
+      { featured: false, label: "Climate AI", title: "AtmoSense - Climate Forecasting", desc: "Spatiotemporal transformer for extreme weather prediction, reducing error by 23% versus SOTA.", tags: ["Graph Neural Nets", "Xarray", "Earth Engine"], status: "live", link: "#" },
+      { featured: false, label: "NLP", title: "FakeGuard Multilingual", desc: "Real-time misinformation detection for low-resource languages (Darija, Kabyle).", tags: ["BERT", "FastText", "Streamlit"], status: "live", link: "#" },
+      { featured: false, label: "AutoML", title: "AutoML Pipeline Engine", desc: "Open-source library that automates feature engineering & hyperparameter tuning for tabular data.", tags: ["Ray", "Optuna", "Pandas"], status: "soon", link: "#" },
+      { featured: false, label: "Graph Learning", title: "GraphRec - Social Recommender", desc: "Heterogeneous GNN for e-commerce recommendation with cold-start mitigation.", tags: ["DGL", "GraphSage", "Neo4j"], status: "live", link: "#" },
+      { featured: false, label: "Edge AI", title: "TinyML Anomaly Detector", desc: "On-device anomaly detection for industrial IoT sensors (ARM Cortex-M).", tags: ["TensorFlow Lite", "MicroPython", "MQTT"], status: "soon", link: "#" }
     ],
     contact: {
       blurb: "Let's push the boundaries of AI together. Available for collaborations, speaking, or research partnerships.",
@@ -646,9 +716,7 @@
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('revealed');
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
     reveals.forEach(el => observer.observe(el));
@@ -674,15 +742,25 @@
   }
 
   function renderProjects(projects) {
-    document.getElementById('projects-layout').innerHTML = projects.map((p, idx) => {
-      const status = p.status === 'live' ? `<span class="status-dot live">active research</span>` : `<span class="status-dot soon">upcoming</span>`;
-      const chips = p.tags.map(t => `<span class="proj-chip">${t}</span>`).join('');
-      const link = p.link || '#';
-      if (p.featured) {
-        return `<a href="${link}" class="proj featured"><div class="proj-featured-inner"><div class="proj-meta"><span class="proj-label">${p.label || 'Spotlight'}</span>${status}</div><div class="proj-title">${p.title}</div><p class="proj-desc">${p.desc}</p><div class="proj-chips">${chips}</div></div></a>`;
-      } else {
-        return `<a href="${link}" class="proj"><div class="proj-num-col"><span class="proj-num">${String(idx).padStart(2, '0')}</span></div><div class="proj-body"><div class="proj-meta"><span class="proj-label">${p.label || ''}</span>${status}</div><div class="proj-title">${p.title}</div><p class="proj-desc">${p.desc}</p><div class="proj-chips">${chips}</div></div><div class="proj-arrow-col"><span class="proj-arrow">↗</span></div></a>`;
-      }
+    const container = document.getElementById('projects-grid');
+    container.innerHTML = projects.map((p, idx) => {
+      const statusClass = p.status === 'live' ? 'live' : 'soon';
+      const statusText = p.status === 'live' ? 'active research' : 'upcoming';
+      const featuredClass = p.featured ? 'featured' : '';
+      return `
+        <a href="${p.link || '#'}" class="project-card ${featuredClass}">
+          <div class="card-header">
+            <span class="card-label">${p.label}</span>
+            <span class="status-badge status-dot ${statusClass}">${statusText}</span>
+          </div>
+          <div class="card-title">${p.title}</div>
+          <div class="card-desc">${p.desc}</div>
+          <div class="card-chips">
+            ${p.tags.map(tag => `<span class="proj-chip">${tag}</span>`).join('')}
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+      `;
     }).join('');
   }
 
@@ -702,7 +780,7 @@
     });
   }
 
-  function loadData() {
+  function loadAll() {
     renderHero(portfolioData.hero);
     renderAbout(portfolioData.about);
     renderSkills(portfolioData.skills);
@@ -710,13 +788,9 @@
     renderContact(portfolioData.contact);
     applyRevealObserver();
     initNavScroll();
-    // extra micro-interactions
-    document.querySelectorAll('.proj, .btn, .chip, .link-item').forEach(el => {
-      el.addEventListener('mouseenter', (e) => { });
-    });
   }
 
-  loadData();
+  loadAll();
 </script>
 </body>
 </html>
