@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sarah Goudjil — Data Scientist & AI Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Sarah Goudjil — Data Scientist / AI Architect</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ---------- RESET & GLOBAL ---------- */
   * {
     margin: 0;
     padding: 0;
@@ -14,33 +13,33 @@
   }
 
   :root {
-    /* Cherry red / burgundy elegant palette */
-    --cherry-deep: #3b0a0c;      /* deepest background */
-    --cherry-dark: #571012;
-    --cherry-rich: #7a1a1c;
-    --cherry-bright: #b52427;
-    --cherry-glow: #e03b3f;
-    --burgundy-wine: #631c22;
-    --rose-mist: #f5e0e1;
-    --cream-paper: #fef7f2;
-    --stone-gray: #e9e2dc;
-    --text-primary: #2c1e1a;
-    --text-secondary: #4d3832;
-    --text-muted: #7e6b64;
-    --border-light: rgba(122, 26, 28, 0.18);
-    --card-bg: rgba(255, 251, 245, 0.96);
-    --glass-edge: rgba(90, 22, 24, 0.08);
+    /* Dark theme - cherry red / burgundy elegant palette */
+    --bg-deep: #0a0506;
+    --bg-surface: #12090c;
+    --bg-elevated: #1c0f13;
+    --cherry-primary: #b81c2c;
+    --cherry-bright: #e3343f;
+    --cherry-dim: rgba(184, 28, 44, 0.12);
+    --cherry-glow: rgba(227, 52, 63, 0.18);
+    --burgundy-soft: #8b2c32;
+    --text-light: #f2e8e5;
+    --text-muted: #b6a3a0;
+    --text-dim: #7a6561;
+    --border-subtle: rgba(184, 28, 44, 0.25);
+    --border-glass: rgba(184, 28, 44, 0.12);
+    --card-bg: rgba(18, 9, 12, 0.85);
+    --glow-effect: 0 0 20px rgba(184, 28, 44, 0.15);
   }
 
   body {
-    background: linear-gradient(145deg, #faf3ef 0%, #f6ede8 100%);
-    color: var(--text-primary);
+    background: var(--bg-deep);
+    color: var(--text-light);
     font-family: 'Inter', sans-serif;
-    line-height: 1.5;
+    line-height: 1.55;
     overflow-x: hidden;
   }
 
-  /* subtle grain + cherry accent noise */
+  /* Noise texture overlay */
   body::before {
     content: "";
     position: fixed;
@@ -48,38 +47,45 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: radial-gradient(rgba(122, 26, 28, 0.03) 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-image: radial-gradient(rgba(184, 28, 44, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
     pointer-events: none;
     z-index: 0;
   }
 
-  /* modern smooth scroll */
-  html {
-    scroll-behavior: smooth;
+  /* Grain effect */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 2px, transparent 2px, transparent 6px);
+    pointer-events: none;
+    z-index: 1;
   }
 
-  /* container */
   .container {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
-    z-index: 2;
+    z-index: 5;
   }
 
-  /* ========== NAVIGATION ========== */
+  /* Navigation - dark cherry minimal */
   .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 100;
-    padding: 1.5rem 2rem;
-    background: rgba(255, 251, 245, 0.9);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-light);
-    transition: all 0.3s ease;
+    padding: 1.2rem 2rem;
+    background: rgba(10, 5, 6, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-subtle);
+    transition: all 0.25s;
   }
   .nav-inner {
     max-width: 1280px;
@@ -89,11 +95,11 @@
     align-items: center;
   }
   .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.65rem;
+    font-family: 'Space Grotesk', monospace;
+    font-size: 1.7rem;
     font-weight: 600;
     letter-spacing: -0.02em;
-    background: linear-gradient(135deg, var(--cherry-rich) 0%, var(--cherry-bright) 100%);
+    background: linear-gradient(135deg, var(--cherry-bright) 0%, var(--cherry-primary) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -102,20 +108,19 @@
   .logo span {
     color: var(--cherry-bright);
     background: none;
-    background-clip: unset;
-    -webkit-background-clip: unset;
+    font-weight: 700;
   }
   .nav-links {
     display: flex;
-    gap: 3rem;
+    gap: 2.8rem;
     list-style: none;
   }
   .nav-links a {
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.05em;
-    color: var(--text-secondary);
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
     transition: color 0.2s;
     text-transform: uppercase;
   }
@@ -123,333 +128,315 @@
     color: var(--cherry-bright);
   }
 
-  /* ========== HERO SECTION (new asymmetric layout) ========== */
+  /* HERO - completely new asymmetric dark style */
   .hero-section {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 8rem 0 5rem;
+    padding: 7rem 0 4rem;
     position: relative;
   }
-  .hero-grid {
+  .hero-layout {
     display: grid;
-    grid-template-columns: 1fr 0.9fr;
-    gap: 4rem;
-    align-items: center;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
   }
-  .hero-left {
+  .hero-main {
     position: relative;
   }
-  .hero-badge {
+  .hero-tag {
     display: inline-flex;
     align-items: center;
-    gap: 0.7rem;
-    background: rgba(122, 26, 28, 0.1);
-    backdrop-filter: blur(4px);
-    padding: 0.4rem 1rem;
+    gap: 0.6rem;
+    background: var(--cherry-dim);
+    backdrop-filter: blur(5px);
+    padding: 0.4rem 1.2rem;
     border-radius: 40px;
     margin-bottom: 2rem;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 500;
-    text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--cherry-rich);
-    border: 0.5px solid var(--border-light);
-    width: fit-content;
+    color: var(--cherry-bright);
+    border: 0.5px solid rgba(184, 28, 44, 0.4);
   }
-  .hero-badge::before {
+  .hero-tag::before {
     content: "";
     width: 8px;
     height: 8px;
     background: var(--cherry-bright);
     border-radius: 50%;
     display: inline-block;
-    animation: pulse 2s infinite;
+    animation: pulseRed 1.8s infinite;
   }
-  @keyframes pulse {
-    0% { opacity: 0.4; transform: scale(0.8);}
+  @keyframes pulseRed {
+    0% { opacity: 0.3; transform: scale(0.7);}
     100% { opacity: 1; transform: scale(1.2);}
   }
   h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3.2rem, 8vw, 5.8rem);
-    font-weight: 500;
-    line-height: 1.1;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3.2rem, 9vw, 5.6rem);
+    font-weight: 700;
+    line-height: 1.08;
     letter-spacing: -0.02em;
     margin-bottom: 1.5rem;
   }
-  .name-accent {
-    color: var(--cherry-rich);
-    border-bottom: 3px solid var(--cherry-bright);
-    display: inline-block;
+  .name-fire {
+    background: linear-gradient(120deg, #fff 20%, var(--cherry-bright) 80%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
   }
-  .hero-desc {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
+  .hero-description {
+    font-size: 1rem;
+    color: var(--text-muted);
     margin-bottom: 2rem;
     line-height: 1.7;
     max-width: 90%;
   }
-  .hero-stats-flex {
+  .stats-row {
     display: flex;
-    gap: 2.5rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
+    gap: 2.2rem;
+    margin-bottom: 2.2rem;
   }
-  .stat-item {
-    border-left: 2px solid var(--cherry-bright);
+  .stat-block {
+    border-left: 2px solid var(--cherry-primary);
     padding-left: 1rem;
   }
   .stat-number {
     font-size: 2rem;
     font-weight: 700;
-    font-family: 'Playfair Display', serif;
-    color: var(--cherry-rich);
+    font-family: 'Space Grotesk', monospace;
+    color: var(--cherry-bright);
     line-height: 1;
   }
-  .stat-label {
-    font-size: 0.7rem;
+  .stat-caption {
+    font-size: 0.65rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
   }
   .btn-group {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
   }
-  .btn-primary {
-    background: var(--cherry-rich);
+  .btn-cherry {
+    background: var(--cherry-primary);
     color: white;
-    padding: 0.85rem 2rem;
+    padding: 0.8rem 1.9rem;
     border: none;
-    border-radius: 40px;
+    border-radius: 60px;
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     cursor: pointer;
-    transition: all 0.25s;
+    transition: 0.2s;
     text-decoration: none;
     display: inline-block;
+    letter-spacing: 0.02em;
   }
-  .btn-primary:hover {
+  .btn-cherry:hover {
     background: var(--cherry-bright);
     transform: translateY(-3px);
-    box-shadow: 0 12px 20px -12px rgba(122, 26, 28, 0.4);
+    box-shadow: 0 10px 20px -8px rgba(184, 28, 44, 0.45);
   }
-  .btn-outline {
+  .btn-ghost-cherry {
     background: transparent;
-    border: 1.5px solid var(--cherry-rich);
-    color: var(--cherry-rich);
-    padding: 0.85rem 2rem;
-    border-radius: 40px;
-    font-weight: 600;
-    font-size: 0.85rem;
+    border: 1.5px solid var(--cherry-primary);
+    color: var(--text-light);
+    padding: 0.8rem 1.9rem;
+    border-radius: 60px;
+    font-weight: 500;
+    font-size: 0.8rem;
     text-decoration: none;
     transition: 0.2s;
   }
-  .btn-outline:hover {
-    background: var(--cherry-rich);
-    color: white;
-    transform: translateY(-2px);
+  .btn-ghost-cherry:hover {
+    background: var(--cherry-dim);
+    border-color: var(--cherry-bright);
   }
-  .hero-right {
+  .hero-card {
     background: var(--card-bg);
+    backdrop-filter: blur(12px);
     border-radius: 2rem;
-    padding: 2rem 2rem 2.5rem;
-    box-shadow: 0 20px 35px -20px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.02);
-    border: 1px solid var(--border-light);
-    backdrop-filter: blur(2px);
+    padding: 2rem;
+    border: 1px solid var(--border-glass);
+    box-shadow: var(--glow-effect);
   }
   .hero-quote {
+    font-size: 1.2rem;
+    line-height: 1.5;
     font-style: italic;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.35rem;
-    line-height: 1.45;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
   }
-  .hero-quote span {
+  .hero-quote strong {
     color: var(--cherry-bright);
-    font-size: 2rem;
-    vertical-align: middle;
+    font-style: normal;
   }
-  .signature-line {
-    margin-top: 1.2rem;
+  .hero-signature {
     font-size: 0.8rem;
-    color: var(--cherry-rich);
-    font-weight: 500;
+    color: var(--cherry-primary);
+    margin-top: 1rem;
   }
 
-  /* ========== SECTION SHARED ========== */
+  /* section headers unified */
   section {
-    margin: 5rem 0;
+    margin: 6rem 0;
   }
   .section-header {
     display: flex;
     align-items: baseline;
     gap: 1rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
+    margin-bottom: 3.5rem;
   }
   .section-num {
-    font-family: 'Inter', monospace;
-    font-size: 0.8rem;
+    font-family: monospace;
+    font-size: 0.7rem;
     font-weight: 600;
     color: var(--cherry-bright);
-    background: rgba(122, 26, 28, 0.08);
-    padding: 0.2rem 0.6rem;
-    border-radius: 20px;
+    background: var(--cherry-dim);
+    padding: 0.2rem 0.7rem;
+    border-radius: 30px;
   }
   .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    font-weight: 500;
-    color: var(--cherry-deep);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
     letter-spacing: -0.01em;
+    color: var(--text-light);
   }
   .section-line {
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, var(--cherry-rich) 0%, rgba(122,26,28,0.1) 80%);
+    background: linear-gradient(90deg, var(--cherry-primary) 0%, rgba(184,28,44,0.1) 90%);
   }
 
-  /* about - 2 columns fresh */
-  .about-grid {
+  /* about column dark glass */
+  .about-flex {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
   }
-  .about-text {
-    background: var(--card-bg);
+  .about-text-card {
+    background: var(--bg-elevated);
+    border-radius: 1.5rem;
     padding: 2rem;
-    border-radius: 2rem;
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border-subtle);
   }
-  .about-text p {
+  .about-text-card p {
+    color: var(--text-muted);
     margin-bottom: 1rem;
-    color: var(--text-secondary);
-    line-height: 1.65;
+    line-height: 1.7;
   }
-  .info-grid {
-    background: var(--card-bg);
-    border-radius: 2rem;
+  .info-glass {
+    background: var(--bg-elevated);
+    border-radius: 1.5rem;
     padding: 2rem;
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border-subtle);
   }
-  .info-item {
+  .info-row-custom {
     display: flex;
-    border-bottom: 1px solid var(--border-light);
+    border-bottom: 1px solid rgba(184,28,44,0.2);
     padding: 1rem 0;
   }
-  .info-item:last-child {
-    border-bottom: 0;
+  .info-row-custom:last-child {
+    border: none;
   }
-  .info-key {
+  .info-label {
     width: 100px;
     font-weight: 600;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    color: var(--cherry-rich);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
+    color: var(--cherry-bright);
   }
-  .info-value {
+  .info-detail {
     flex: 1;
-    font-weight: 500;
-    color: var(--text-primary);
+    color: var(--text-light);
+    font-weight: 400;
   }
 
-  /* skills - masonry style with burgundy accents */
-  .skills-grid {
+  /* skills grid - modern cherry */
+  .skills-showcase {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
   }
-  .skill-card {
-    background: var(--card-bg);
-    border-radius: 1.5rem;
+  .skill-tile {
+    background: var(--bg-elevated);
+    border-radius: 1.2rem;
     padding: 1.5rem;
-    border: 1px solid var(--border-light);
-    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid var(--border-subtle);
+    transition: all 0.2s;
   }
-  .skill-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 30px -12px rgba(90, 22, 24, 0.15);
-    border-color: var(--cherry-rich);
+  .skill-tile:hover {
+    border-color: var(--cherry-primary);
+    background: rgba(184, 28, 44, 0.05);
   }
-  .skill-title {
-    font-size: 1rem;
+  .skill-category {
+    font-size: 0.9rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: var(--cherry-deep);
-    letter-spacing: -0.2px;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .skill-title:before {
-    content: "✦";
     color: var(--cherry-bright);
-    font-size: 1.1rem;
   }
-  .skill-tags {
+  .skill-pills {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
   }
-  .skill-tag {
-    background: rgba(122, 26, 28, 0.08);
-    padding: 0.3rem 0.9rem;
+  .pill {
+    background: rgba(184, 28, 44, 0.12);
+    padding: 0.3rem 1rem;
     border-radius: 30px;
     font-size: 0.7rem;
     font-weight: 500;
-    color: var(--cherry-rich);
-    transition: all 0.1s;
+    color: var(--text-muted);
+    transition: 0.1s;
   }
 
-  /* projects - modern gallery cards */
-  .projects-showcase {
+  /* projects - vertical timeline / modern cards */
+  .projects-stack {
     display: flex;
     flex-direction: column;
     gap: 1.8rem;
   }
-  .project-card {
-    background: var(--card-bg);
-    border-radius: 1.8rem;
-    transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
-    border: 1px solid var(--border-light);
+  .project-item {
+    background: var(--bg-elevated);
+    border-radius: 1.5rem;
+    transition: 0.2s;
+    border: 1px solid var(--border-subtle);
     overflow: hidden;
   }
-  .project-card:hover {
-    border-color: var(--cherry-rich);
-    box-shadow: 0 20px 35px -15px rgba(0,0,0,0.1);
+  .project-item:hover {
+    border-color: var(--cherry-primary);
+    transform: translateX(6px);
   }
-  .project-content {
-    padding: 2rem 2rem 1.8rem 2rem;
+  .project-inner {
+    padding: 1.8rem;
   }
-  .project-meta {
+  .project-header {
     display: flex;
     gap: 1rem;
     align-items: center;
-    margin-bottom: 0.6rem;
     flex-wrap: wrap;
+    margin-bottom: 0.5rem;
   }
-  .project-badge {
+  .project-type {
     font-size: 0.7rem;
-    background: rgba(181, 36, 39, 0.1);
+    background: var(--cherry-dim);
     padding: 0.2rem 0.8rem;
-    border-radius: 40px;
+    border-radius: 30px;
     font-weight: 600;
     color: var(--cherry-bright);
-    text-transform: uppercase;
   }
-  .status {
+  .status-indicator {
     font-size: 0.7rem;
-    color: var(--text-muted);
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 6px;
+    color: var(--text-dim);
   }
-  .status-dot {
+  .cherry-dot {
     width: 6px;
     height: 6px;
     background: var(--cherry-bright);
@@ -457,128 +444,123 @@
     display: inline-block;
   }
   .project-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 500;
-    margin: 0.5rem 0 0.8rem;
-    color: var(--cherry-deep);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0.6rem 0 0.7rem;
+    color: white;
   }
-  .project-desc {
-    color: var(--text-secondary);
+  .project-description {
+    color: var(--text-muted);
     margin-bottom: 1rem;
     line-height: 1.6;
   }
-  .project-chips {
+  .tags-group {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
     margin: 1rem 0 1.2rem;
   }
-  .project-chip {
-    background: rgba(90, 22, 24, 0.05);
+  .tag {
+    background: rgba(184, 28, 44, 0.08);
     padding: 0.2rem 0.8rem;
-    border-radius: 20px;
+    border-radius: 30px;
     font-size: 0.7rem;
-    font-weight: 500;
-    color: #4d2e2a;
+    color: #cfa5a0;
   }
   .project-link {
-    font-weight: 600;
-    font-size: 0.85rem;
-    color: var(--cherry-rich);
     text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--cherry-bright);
     display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
-    transition: gap 0.2s;
-  }
-  .project-link:hover {
-    gap: 0.6rem;
-    color: var(--cherry-bright);
+    gap: 6px;
   }
 
-  /* contact - split + cherry accents */
-  .contact-wrap {
+  /* contact reimagined dark cherry */
+  .contact-duo {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
   }
-  .contact-left h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    font-weight: 500;
+  .contact-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 600;
     margin-bottom: 1rem;
-    color: var(--cherry-deep);
   }
-  .contact-left p {
-    color: var(--text-secondary);
-    margin-bottom: 1.8rem;
+  .contact-title span {
+    color: var(--cherry-bright);
   }
-  .email-big {
-    display: inline-flex;
-    background: var(--card-bg);
-    padding: 0.9rem 1.8rem;
+  .contact-text {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+  .email-badge {
+    display: inline-block;
+    background: var(--bg-elevated);
+    padding: 0.9rem 1.6rem;
     border-radius: 60px;
     text-decoration: none;
-    font-weight: 600;
-    color: var(--cherry-rich);
-    border: 1px solid var(--border-light);
+    font-weight: 500;
+    color: var(--cherry-bright);
+    border: 1px solid var(--border-subtle);
     transition: all 0.2s;
+    margin-bottom: 2rem;
   }
-  .email-big:hover {
-    background: var(--cherry-rich);
-    color: white;
-    border-color: var(--cherry-rich);
+  .email-badge:hover {
+    background: var(--cherry-dim);
+    border-color: var(--cherry-primary);
   }
-  .social-links-cherry {
+  .social-dark-list {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
   }
-  .social-link-item {
-    background: var(--card-bg);
-    padding: 1rem 1.5rem;
+  .social-card-link {
+    background: var(--bg-elevated);
+    padding: 1rem 1.3rem;
     border-radius: 1rem;
     text-decoration: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border-subtle);
     transition: all 0.2s;
   }
-  .social-link-item span:first-child {
-    font-weight: 600;
-    color: var(--cherry-rich);
-    text-transform: uppercase;
-    font-size: 0.7rem;
+  .social-card-link span:first-child {
+    font-weight: 700;
+    font-size: 0.75rem;
     letter-spacing: 0.08em;
+    color: var(--cherry-bright);
   }
-  .social-link-item span:last-child {
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-  }
-  .social-link-item:hover {
-    background: rgba(122, 26, 28, 0.05);
-    border-color: var(--cherry-rich);
-    transform: translateX(5px);
-  }
-
-  footer {
-    border-top: 1px solid var(--border-light);
-    text-align: center;
-    padding: 2rem;
-    margin-top: 5rem;
+  .social-card-link span:last-child {
     color: var(--text-muted);
     font-size: 0.8rem;
   }
+  .social-card-link:hover {
+    background: rgba(184, 28, 44, 0.1);
+    border-color: var(--cherry-primary);
+    transform: translateX(4px);
+  }
+
+  footer {
+    border-top: 1px solid var(--border-subtle);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 5rem;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+  }
 
   @media (max-width: 850px) {
-    .hero-grid, .about-grid, .contact-wrap {
+    .hero-layout, .about-flex, .contact-duo {
       grid-template-columns: 1fr;
       gap: 2rem;
     }
     .nav-links {
-      gap: 1.2rem;
+      gap: 1.5rem;
     }
     .container {
       padding: 0 1.5rem;
@@ -586,11 +568,14 @@
   }
   @media (max-width: 550px) {
     .navbar {
-      padding: 1rem;
+      padding: 0.9rem;
     }
     .nav-inner {
       flex-direction: column;
-      gap: 0.8rem;
+      gap: 0.7rem;
+    }
+    .stats-row {
+      gap: 1rem;
     }
   }
 </style>
@@ -599,254 +584,250 @@
 
 <nav class="navbar">
   <div class="nav-inner">
-    <a href="#" class="logo" id="dynamicLogo">Sarah <span>G.</span></a>
+    <a href="#" class="logo" id="logoName">Sarah <span>G.</span></a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
+      <li><a href="#about">Profile</a></li>
       <li><a href="#skills">Stack</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="#projects">Work</a></li>
       <li><a href="#contact">Connect</a></li>
     </ul>
   </div>
 </nav>
 
-<main>
-  <div class="container">
-    <!-- HERO SECTION redesigned -->
-    <div class="hero-section" id="hero">
-      <div class="hero-grid">
-        <div class="hero-left">
-          <div class="hero-badge" id="heroTitleBadge">DATA SCIENTIST · ALGIERS</div>
-          <h1>Sarah <span class="name-accent" id="dynamicLastname">Goudjil</span></h1>
-          <p class="hero-desc" id="heroDescription">Transforming complex data into actionable intelligence. I build ML systems that speak business & create impact.</p>
-          <div class="hero-stats-flex" id="statsContainer"></div>
-          <div class="btn-group">
-            <a href="#projects" class="btn-primary">Explore projects →</a>
-            <a href="#contact" class="btn-outline">Let’s talk</a>
-          </div>
+<div class="container">
+  <!-- HERO - dark cherry asymmetrical -->
+  <div class="hero-section" id="hero">
+    <div class="hero-layout">
+      <div class="hero-main">
+        <div class="hero-tag" id="heroTag">DATA SCIENTIST · ALGIERS</div>
+        <h1>Sarah <span class="name-fire" id="lastnameGlow">Goudjil</span></h1>
+        <p class="hero-description" id="heroDesc">I turn data into strategic assets — building scalable ML systems and human-centric AI.</p>
+        <div class="stats-row" id="statsRow"></div>
+        <div class="btn-group">
+          <a href="#projects" class="btn-cherry">Explore case studies →</a>
+          <a href="#contact" class="btn-ghost-cherry">Contact me</a>
         </div>
-        <div class="hero-right">
-          <div class="hero-quote">
-            <span>“</span> Data is the new alchemy — turning raw noise into golden insights.<span>”</span>
-          </div>
-          <div class="signature-line">— Sarah Goudjil, building at the edge of AI & analytics</div>
-          <div style="margin-top: 1.8rem; font-size: 0.7rem; color: var(--text-muted);">⚡ 3+ years industry & research</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-quote">
+          <strong>“Data without intuition is just noise.”</strong><br>
+          I bridge the gap between raw analytics and real-world decisions.
         </div>
+        <div class="hero-signature">✦ 4+ years of impact — from startups to enterprise AI</div>
       </div>
     </div>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="section-header">
-        <span class="section-num">01</span>
-        <h2 class="section-title">Profile & essence</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="about-grid">
-        <div class="about-text" id="aboutText"></div>
-        <div class="info-grid" id="infoGrid"></div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-      <div class="section-header">
-        <span class="section-num">02</span>
-        <h2 class="section-title">Technical arsenal</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="skills-grid" id="skillsGrid"></div>
-    </section>
-
-    <!-- PROJECTS new style -->
-    <section id="projects">
-      <div class="section-header">
-        <span class="section-num">03</span>
-        <h2 class="section-title">Selected builds</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="projects-showcase" id="projectsShowcase"></div>
-    </section>
-
-    <!-- CONTACT redesigned -->
-    <section id="contact">
-      <div class="section-header">
-        <span class="section-num">04</span>
-        <h2 class="section-title">Collaborate</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="contact-wrap">
-        <div class="contact-left">
-          <h3>Let's craft<br>something <span style="color: var(--cherry-rich);">bold</span>.</h3>
-          <p id="contactBlurb">Whether it's AI research, product analytics or data strategy — reach out.</p>
-          <a href="#" id="contactEmailLink" class="email-big">✉️ sarah.goudjil@dataset.ai</a>
-        </div>
-        <div class="social-links-cherry" id="socialLinksList"></div>
-      </div>
-    </section>
   </div>
-</main>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Core identity</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-flex">
+      <div class="about-text-card" id="aboutText"></div>
+      <div class="info-glass" id="infoBlock"></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Technical palette</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-showcase" id="skillsContainer"></div>
+  </section>
+
+  <!-- PROJECTS - reimagined dark version -->
+  <section id="projects">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Selected deliveries</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-stack" id="projectsList"></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Collaborate</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-duo">
+      <div>
+        <div class="contact-title">Let's <span>ignite</span><br>data projects.</div>
+        <p class="contact-text" id="contactBlurb"></p>
+        <a href="#" id="contactEmail" class="email-badge">✧ sarah.g@cherrydata.ai</a>
+      </div>
+      <div class="social-dark-list" id="socialLinks"></div>
+    </div>
+  </section>
+</div>
+
 <footer>
-  <span id="footerCopy">Sarah Goudjil — data craftsmanship, Algiers · 2025</span>
+  <span id="footerCredits">Sarah Goudjil — AI & data intelligence · Algiers / remote</span>
 </footer>
 
 <script>
-  // MOCK data.json simulation (full data with beautiful burgundy/cherry new content)
-  const mockData = {
+  // DARK CHERRY DATA — rich content aligned with new layout
+  const siteData = {
     hero: {
       firstName: "Sarah",
       lastName: "Goudjil",
       title: "DATA SCIENTIST · ALGIERS",
-      description: "Transforming complex data into actionable intelligence. I build ML systems that speak business & create impact.",
+      description: "I turn data into strategic assets — building scalable ML systems and human-centric AI.",
       stats: [
-        { value: "7+", label: "AI PROJECTS" },
+        { value: "8+", label: "PROJECTS SHIPPED" },
         { value: "4", label: "YEARS EXP." },
-        { value: "12", label: "MODELS DEPLOYED" }
+        { value: "94%", label: "ACCURACY AVG" }
       ]
     },
     about: {
       paragraphs: [
-        "I'm <strong>Sarah Goudjil</strong>, a data scientist based in Algiers with a passion for turning messy datasets into elegant, predictive solutions. I hold a Master's in Artificial Intelligence and have collaborated with startups and enterprises to drive data-led decisions.",
-        "My approach combines rigorous statistical modeling with a creative sense of storytelling — I don't just run models, I translate insights into strategic narratives. Outside code, I mentor young women in STEM and write about responsible AI."
+        "I'm <strong style='color:#e3343f;'>Sarah Goudjil</strong>, a data scientist deeply rooted in <strong>machine learning, MLOps, and product analytics</strong>. My work blends rigorous statistical modeling with production-grade engineering — from fraud detection to generative AI prototypes.",
+        "Beyond code, I’m an advocate for ethical AI and open-source knowledge. I’ve spoken at PyData Algiers and led workshops on responsible data practices. I currently lead data science initiatives at <strong>Nexify Analytics</strong>, where we build intelligent systems for MENA enterprises."
       ],
       info: [
-        { key: "Location", value: "Algiers, Algeria / Remote" },
-        { key: "Currently", value: "Lead Data Scientist @ Analytix Labs" },
-        { key: "Education", value: "M.Sc. AI - USTHB, Executive ML - Stanford Online" },
-        { key: "Speaking", value: "PyData / AI Algeria Summit'24" }
+        { key: "based", value: "Algiers, DZ / GMT+1" },
+        { key: "focus", value: "LLMs, Forecasting, Computer Vision" },
+        { key: "toolkit", value: "Python, PyTorch, SQL, Airflow, AWS" },
+        { key: "talk to me", value: "AI strategy, mentoring, data culture" }
       ]
     },
     skills: [
-      { category: "Machine Learning", items: ["Scikit-learn", "XGBoost", "PyTorch", "Transformers", "Time Series"] },
-      { category: "Data Engineering", items: ["Python", "SQL", "Apache Spark", "Airflow", "dbt"] },
-      { category: "Visualization & BI", items: ["Tableau", "Power BI", "Plotly", "Streamlit", "Observable"] },
-      { category: "MLOps & Cloud", items: ["Docker", "AWS (SageMaker)", "GCP", "MLflow", "FastAPI"] }
+      { category: "Core ML & AI", items: ["Regression", "Classification", "Time Series", "NLP", "Computer Vision"] },
+      { category: "Frameworks", items: ["PyTorch", "TensorFlow", "Scikit-learn", "XGBoost", "LangChain"] },
+      { category: "Data & MLOps", items: ["Pandas", "Spark", "Docker", "MLflow", "FastAPI", "dbt"] },
+      { category: "Cloud & DB", items: ["AWS (SageMaker)", "GCP", "PostgreSQL", "BigQuery", "MongoDB"] }
     ],
     projects: [
       {
-        featured: true,
-        label: "FLAGSHIP",
+        label: "FINTECH",
         status: "live",
-        title: "ForecastFlow — demand prediction engine",
-        desc: "Hybrid deep learning model for retail inventory forecasting. Reduced stockouts by 34% across 200+ SKUs, deployed as API.",
-        tags: ["Prophet", "LSTM", "FastAPI", "Docker"],
+        title: "RiskShield — real-time fraud detection",
+        desc: "Designed an ensemble model for transaction monitoring, reducing false positives by 38% for a payment gateway.",
+        tags: ["XGBoost", "Streaming ML", "Kafka", "AWS Lambda"],
         link: "#"
       },
       {
-        featured: false,
-        label: "NLP",
+        label: "GENERATIVE AI",
         status: "live",
-        title: "JurisAI — legal document summarizer",
-        desc: "Fine-tuned BERT-based model for Algerian civil law summarization. Achieved ROUGE score of 0.83, now used by law firms.",
-        tags: ["Transformers", "HuggingFace", "Streamlit"],
+        title: "DocMind — legal contract intelligence",
+        desc: "Fine-tuned Mistral-7B for clause extraction & summarization. Deployed as internal API with retrieval-augmented generation.",
+        tags: ["LLM", "RAG", "ChromaDB", "FastAPI"],
         link: "#"
       },
       {
-        featured: false,
-        label: "COMPUTER VISION",
+        label: "RETAIL ANALYTICS",
         status: "live",
-        title: "AgriScan: crop disease detection",
-        desc: "YOLOv8 & EfficientNet for early detection of plant diseases from drone imagery, 92.4% accuracy in field tests.",
-        tags: ["PyTorch", "OpenCV", "Roboflow"],
+        title: "DeepStock: inventory optimization",
+        desc: "Hybrid deep learning (LSTM + Transformer) to forecast demand for 500+ SKUs, reducing overstock by 22%.",
+        tags: ["Prophet", "PyTorch", "Tableau", "dbt"],
         link: "#"
       },
       {
-        featured: false,
-        label: "ANALYTICS",
+        label: "RESEARCH",
         status: "soon",
-        title: "Realtime Customer 360 (R&D)",
-        desc: "Building graph-based customer intelligence platform using Neo4j and dbt.",
-        tags: ["Neo4j", "dbt", "Snowflake"],
+        title: "ClimateSense — satellite data fusion",
+        desc: "Using Sentinel-2 imagery to predict agricultural yield with attention-based CNNs. (ongoing collaboration)",
+        tags: ["CNNs", "EO-Learn", "GDAL", "Geospatial"],
         link: "#"
       }
     ],
     contact: {
-      blurb: "Open for freelance collaborations, speaking engagements, or simply a chat about data culture.",
+      blurb: "Looking for a data scientist to elevate your product? Want to discuss a collaboration or speak at your next event? Let's connect.",
       email: "sarah.goudjil@cherrydata.ai",
       links: [
         { platform: "GitHub", url: "https://github.com/sarahgoudjil" },
-        { platform: "LinkedIn", url: "https://linkedin.com/in/sarah-goudjil" },
-        { platform: "Medium", url: "https://medium.com/@sarahgoudjil" }
+        { platform: "LinkedIn", url: "https://linkedin.com/in/sarah-goudjil-ai" },
+        { platform: "ResearchGate", url: "https://researchgate.net/profile/sarah-goudjil" },
+        { platform: "Substack", url: "https://sarahgoudjil.substack.com" }
       ]
     }
   };
 
-  function renderAll(data) {
-    // Hero dynamic
-    document.getElementById('heroTitleBadge').innerText = data.hero.title;
-    document.getElementById('dynamicLastname').innerHTML = data.hero.lastName;
-    document.getElementById('heroDescription').innerHTML = data.hero.description;
-    const statsDiv = document.getElementById('statsContainer');
-    statsDiv.innerHTML = data.hero.stats.map(s => `
-      <div class="stat-item">
+  function buildUI(d) {
+    // hero
+    document.getElementById('heroTag').innerText = d.hero.title;
+    document.getElementById('lastnameGlow').innerText = d.hero.lastName;
+    document.getElementById('heroDesc').innerText = d.hero.description;
+    const statsRow = document.getElementById('statsRow');
+    statsRow.innerHTML = d.hero.stats.map(s => `
+      <div class="stat-block">
         <div class="stat-number">${s.value}</div>
-        <div class="stat-label">${s.label}</div>
+        <div class="stat-caption">${s.label}</div>
       </div>
     `).join('');
-    document.getElementById('dynamicLogo').innerHTML = `${data.hero.firstName} <span>${data.hero.lastName.charAt(0)}.</span>`;
-    document.getElementById('footerCopy').innerHTML = `${data.hero.firstName} ${data.hero.lastName} — data craftsmanship, Algiers · 2025`;
+    document.getElementById('logoName').innerHTML = `${d.hero.firstName} <span>${d.hero.lastName.charAt(0)}.</span>`;
+    document.getElementById('footerCredits').innerHTML = `${d.hero.firstName} ${d.hero.lastName} — AI & data intelligence · Algiers / remote`;
 
-    // About
+    // about
     const aboutDiv = document.getElementById('aboutText');
-    aboutDiv.innerHTML = data.about.paragraphs.map(p => `<p>${p}</p>`).join('');
-    const infoDiv = document.getElementById('infoGrid');
-    infoDiv.innerHTML = data.about.info.map(i => `
-      <div class="info-item">
-        <div class="info-key">${i.key}</div>
-        <div class="info-value">${i.value}</div>
+    aboutDiv.innerHTML = d.about.paragraphs.map(p => `<p>${p}</p>`).join('');
+    const infoDiv = document.getElementById('infoBlock');
+    infoDiv.innerHTML = d.about.info.map(i => `
+      <div class="info-row-custom">
+        <div class="info-label">${i.key}</div>
+        <div class="info-detail">${i.value}</div>
       </div>
     `).join('');
 
-    // Skills with refined burgundy vibe
-    const skillsGrid = document.getElementById('skillsGrid');
-    skillsGrid.innerHTML = data.skills.map(sk => `
-      <div class="skill-card">
-        <div class="skill-title">${sk.category}</div>
-        <div class="skill-tags">
-          ${sk.items.map(item => `<span class="skill-tag">${item}</span>`).join('')}
+    // skills
+    const skillsGrid = document.getElementById('skillsContainer');
+    skillsGrid.innerHTML = d.skills.map(sk => `
+      <div class="skill-tile">
+        <div class="skill-category">${sk.category}</div>
+        <div class="skill-pills">
+          ${sk.items.map(it => `<span class="pill">${it}</span>`).join('')}
         </div>
       </div>
     `).join('');
 
-    // Projects Showcase (new layout)
-    const projectsContainer = document.getElementById('projectsShowcase');
-    projectsContainer.innerHTML = data.projects.map(proj => {
+    // projects (new style)
+    const projectsDiv = document.getElementById('projectsList');
+    projectsDiv.innerHTML = d.projects.map(proj => {
       const statusHtml = proj.status === 'live' 
-        ? `<span class="status"><span class="status-dot"></span> active</span>` 
-        : `<span class="status"><span>📌</span> in development</span>`;
+        ? `<span class="status-indicator"><span class="cherry-dot"></span> active</span>` 
+        : `<span class="status-indicator">⚡ in dev</span>`;
       return `
-        <div class="project-card">
-          <div class="project-content">
-            <div class="project-meta">
-              <span class="project-badge">${proj.label || 'featured'}</span>
+        <div class="project-item">
+          <div class="project-inner">
+            <div class="project-header">
+              <span class="project-type">${proj.label}</span>
               ${statusHtml}
             </div>
             <div class="project-title">${proj.title}</div>
-            <p class="project-desc">${proj.desc}</p>
-            <div class="project-chips">
-              ${proj.tags.map(tag => `<span class="project-chip">${tag}</span>`).join('')}
+            <p class="project-description">${proj.desc}</p>
+            <div class="tags-group">
+              ${proj.tags.map(t => `<span class="tag">${t}</span>`).join('')}
             </div>
-            <a href="${proj.link}" class="project-link">Explore case →</a>
+            <a href="${proj.link}" class="project-link">view case ↗</a>
           </div>
         </div>
       `;
     }).join('');
 
-    // Contact
-    document.getElementById('contactBlurb').innerText = data.contact.blurb;
-    const emailLink = document.getElementById('contactEmailLink');
-    emailLink.href = `mailto:${data.contact.email}`;
-    emailLink.innerHTML = `✉️ ${data.contact.email}`;
-    const socialsDiv = document.getElementById('socialLinksList');
-    socialsDiv.innerHTML = data.contact.links.map(ln => `
-      <a href="${ln.url}" target="_blank" rel="noopener" class="social-link-item">
-        <span>${ln.platform}</span>
-        <span>${ln.url.replace('https://', '').replace('www.', '')}</span>
-        <span style="color: var(--cherry-rich);">↗</span>
+    // contact
+    document.getElementById('contactBlurb').innerText = d.contact.blurb;
+    const emailEl = document.getElementById('contactEmail');
+    emailEl.href = `mailto:${d.contact.email}`;
+    emailEl.innerHTML = `✧ ${d.contact.email}`;
+    const socialContainer = document.getElementById('socialLinks');
+    socialContainer.innerHTML = d.contact.links.map(link => `
+      <a href="${link.url}" target="_blank" class="social-card-link">
+        <span>${link.platform}</span>
+        <span>${link.url.replace('https://', '').replace('www.', '')}</span>
+        <span style="color: #e3343f;">↗</span>
       </a>
     `).join('');
   }
 
-  renderAll(mockData);
+  buildUI(siteData);
 </script>
 </body>
 </html>
