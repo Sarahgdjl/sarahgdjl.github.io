@@ -33,10 +33,8 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
 
-/* subtle noise texture overlay */
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:0.4;pointer-events:none;z-index:0}
 
-/* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(10,6,8,0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .nav-logo{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--text);text-decoration:none;letter-spacing:0.02em}
 .nav-logo em{color:var(--red2);font-style:italic}
@@ -44,10 +42,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-links a{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s}
 .nav-links a:hover{color:var(--text2)}
 
-/* ── WRAPPER ── */
 .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 3rem}
 
-/* ── HERO ── */
 #hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:10rem 3rem 6rem;max-width:1080px;margin:0 auto;position:relative;z-index:1}
 
 .hero-kicker{display:flex;align-items:center;gap:1rem;margin-bottom:2.5rem}
@@ -79,10 +75,8 @@ h1 .name-last{display:block;color:transparent;-webkit-text-stroke:1px var(--red2
 .hero-scroll{position:absolute;bottom:3rem;left:3rem;display:flex;align-items:center;gap:0.75rem;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase}
 .hero-scroll::before{content:'';display:block;width:1px;height:40px;background:linear-gradient(to bottom,var(--red),transparent)}
 
-/* ── DIVIDER ── */
 .divider{width:100%;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);margin:0}
 
-/* ── SECTION ── */
 section{position:relative;z-index:1}
 .section-inner{padding:6rem 3rem;max-width:1080px;margin:0 auto}
 
@@ -91,7 +85,6 @@ section{position:relative;z-index:1}
 .eyebrow-title{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--text);font-weight:400}
 .eyebrow-rule{flex:1;height:1px;background:var(--border)}
 
-/* ── ABOUT ── */
 .about-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start}
 .about-text p{color:var(--text2);font-size:1rem;line-height:1.9;margin-bottom:1.1rem;font-weight:300}
 .about-text p strong{color:var(--text);font-weight:500}
@@ -103,7 +96,6 @@ section{position:relative;z-index:1}
 .info-key{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;padding-top:2px}
 .info-val{font-size:13.5px;color:var(--text2)}
 
-/* ── SKILLS ── */
 #skills{background:var(--bg2)}
 .skills-layout{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden}
 .skill-block{background:var(--bg2);padding:2rem;transition:background 0.2s}
@@ -113,7 +105,6 @@ section{position:relative;z-index:1}
 .chip{font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);background:var(--blue-dim);border:1px solid var(--border-blue);padding:4px 10px;border-radius:2px;letter-spacing:0.03em;transition:all 0.15s}
 .chip:hover{color:var(--blue2);border-color:rgba(58,123,213,0.4)}
 
-/* ── PROJECTS ── */
 .projects-layout{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden}
 
 .proj{display:grid;grid-template-columns:56px 1fr auto;gap:0;background:var(--card);text-decoration:none;color:inherit;transition:background 0.2s;border-bottom:1px solid var(--border)}
@@ -148,7 +139,6 @@ section{position:relative;z-index:1}
 .status-dot.soon{color:var(--muted)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
 
-/* ── CONTACT ── */
 #contact{background:var(--bg2)}
 .contact-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:6rem;align-items:start}
 .contact-heading{font-family:'DM Serif Display',serif;font-size:2.75rem;font-weight:400;line-height:1.1;margin-bottom:1.5rem}
@@ -165,12 +155,10 @@ section{position:relative;z-index:1}
 .link-platform{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;min-width:70px}
 .link-arr{color:var(--dim);transition:color 0.2s;font-size:13px}
 
-/* ── FOOTER ── */
 footer{position:relative;z-index:1;padding:1.75rem 3rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .footer-sig{font-family:'DM Serif Display',serif;font-size:0.9rem;color:var(--muted);font-style:italic}
 .footer-mono{font-family:'DM Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:0.1em}
 
-/* ── RESPONSIVE ── */
 @media(max-width:768px){
   nav{padding:1rem 1.5rem}
   #hero{padding:8rem 1.5rem 4rem}
@@ -190,7 +178,6 @@ footer{position:relative;z-index:1;padding:1.75rem 3rem;border-top:1px solid var
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">Sarah <em>G.</em></a>
   <ul class="nav-links">
@@ -201,24 +188,19 @@ footer{position:relative;z-index:1;padding:1.75rem 3rem;border-top:1px solid var
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-kicker">
     <span class="kicker-line"></span>
-    <span class="kicker-text">Data Scientist · Algiers</span>
+    <span class="kicker-text" id="hero-tagline">Data Scientist · Algiers</span>
   </div>
   <h1>
-    <span class="name-first">Sarah</span>
-    <span class="name-last">Goudjil</span>
+    <span class="name-first" id="hero-firstname">Sarah</span>
+    <span class="name-last" id="hero-lastname">Goudjil</span>
   </h1>
   <div class="hero-body">
-    <p class="hero-desc">M.Sc. Data Science student with a background in <strong>psychology &amp; neuroscience</strong>. I build models that sit at the intersection of human behavior and data.</p>
+    <p class="hero-desc" id="hero-desc">Loading...</p>
     <div class="hero-right">
-      <div class="hero-stats">
-        <div class="stat"><div class="stat-n">6</div><div class="stat-l">projects</div></div>
-        <div class="stat"><div class="stat-n">3</div><div class="stat-l">domains</div></div>
-        <div class="stat"><div class="stat-n">M1</div><div class="stat-l">current year</div></div>
-      </div>
+      <div class="hero-stats" id="hero-stats"></div>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-red">View work →</a>
         <a href="#contact" class="btn btn-ghost">Get in touch</a>
@@ -230,7 +212,6 @@ footer{position:relative;z-index:1;padding:1.75rem 3rem;border-top:1px solid var
 
 <div class="divider"></div>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="section-inner">
     <div class="eyebrow">
@@ -239,30 +220,14 @@ footer{position:relative;z-index:1;padding:1.75rem 3rem;border-top:1px solid var
       <div class="eyebrow-rule"></div>
     </div>
     <div class="about-layout">
-      <div class="about-text">
-        <p>I'm a first-year Data Science master's student based in <strong>Algiers, Algeria</strong>, with a bachelor's degree in <strong>Computer Systems</strong>. My background in software engineering and systems architecture shapes how I approach problems — focusing on building scalable, efficient, and data-driven solutions.</p>
-        
-        <p>I'm currently developing a portfolio of projects at the intersection of <strong>data science and web technologies</strong>, including predictive modeling, data analysis, and full-stack applications with integrated machine learning components.</p>
-        
-        <p>I prioritize hands-on learning, working with real datasets, and understanding the statistical and algorithmic foundations behind each model — from feature engineering to evaluation.</p>
-        
-        <p>Outside of tech, I design and sew clothes — an activity that reinforces my attention to detail and iterative approach to building and improving systems.</p>
-      </div>
-      <div class="info-stack">
-        <div class="info-row"><span class="info-key">Location</span><span class="info-val">Algiers, Algeria</span></div>
-        <div class="info-row"><span class="info-key">Education</span><span class="info-val">M.Sc. Data Science (M1)</span></div>
-        <div class="info-row"><span class="info-key">Background</span><span class="info-val">Computer Systems</span></div>
-        <div class="info-row"><span class="info-key">Focus</span><span class="info-val">Machine Learning · Data Analysis · Web Applications</span></div>
-        <div class="info-row"><span class="info-key">Languages</span><span class="info-val">French, English, Arabic</span></div>
-        <div class="info-row"><span class="info-key">Stack</span><span class="info-val">Python · SQL · JavaScript · APIs</span></div>
-      </div>
+      <div class="about-text" id="about-text"></div>
+      <div class="info-stack" id="about-info"></div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="section-inner">
     <div class="eyebrow">
@@ -270,38 +235,12 @@ footer{position:relative;z-index:1;padding:1.75rem 3rem;border-top:1px solid var
       <h2 class="eyebrow-title">Skills</h2>
       <div class="eyebrow-rule"></div>
     </div>
-    <div class="skills-layout">
-      <div class="skill-block">
-        <div class="skill-block-label">Languages &amp; Tools</div>
-        <div class="skill-chips">
-          <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">R</span><span class="chip">Jupyter</span><span class="chip">Kaggle</span><span class="chip">Git</span>
-        </div>
-      </div>
-      <div class="skill-block">
-        <div class="skill-block-label">Machine Learning</div>
-        <div class="skill-chips">
-          <span class="chip">scikit-learn</span><span class="chip">XGBoost</span><span class="chip">Random Forest</span><span class="chip">Logistic Reg.</span><span class="chip">Feature Engineering</span>
-        </div>
-      </div>
-      <div class="skill-block">
-        <div class="skill-block-label">Data &amp; Visualization</div>
-        <div class="skill-chips">
-          <span class="chip">pandas</span><span class="chip">numpy</span><span class="chip">matplotlib</span><span class="chip">seaborn</span><span class="chip">plotly</span>
-        </div>
-      </div>
-      <div class="skill-block">
-        <div class="skill-block-label">Domain Knowledge</div>
-        <div class="skill-chips">
-          <span class="chip">Survey data (NHANES)</span><span class="chip">Geospatial (NASA FIRMS)</span><span class="chip">NLP basics</span><span class="chip">Stats &amp; probability</span><span class="chip">Psych research methods</span>
-        </div>
-      </div>
-    </div>
+    <div class="skills-layout" id="skills-layout"></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="section-inner">
     <div class="eyebrow">
@@ -309,95 +248,12 @@ footer{position:relative;z-index:1;padding:1.75rem 3rem;border-top:1px solid var
       <h2 class="eyebrow-title">Projects</h2>
       <div class="eyebrow-rule"></div>
     </div>
-    <div class="projects-layout">
-
-      <!-- Featured -->
-      <a href="#" class="proj featured">
-        <div class="proj-featured-inner">
-          <div class="proj-meta">
-            <span class="proj-label">Featured · 01</span>
-            <span class="status-dot live">in progress</span>
-          </div>
-          <div class="proj-title">Depression Risk Prediction Model</div>
-          <p class="proj-desc">A clinical risk prediction model using the CDC NHANES survey dataset. Combines behavioral, demographic, and physiological variables to predict depression risk scores — and explores what self-reported survey data can, and can't, tell us about mental health outcomes.</p>
-          <div class="proj-chips">
-            <span class="proj-chip">classification</span>
-            <span class="proj-chip">health data</span>
-            <span class="proj-chip">NHANES</span>
-            <span class="proj-chip">scikit-learn</span>
-            <span class="proj-chip">feature selection</span>
-            <span class="proj-chip">neuroscience</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- 02 -->
-      <a href="#" class="proj">
-        <div class="proj-num-col"><span class="proj-num">02</span></div>
-        <div class="proj-body">
-          <div class="proj-meta"><span class="proj-label">Geospatial</span><span class="status-dot soon">planned</span></div>
-          <div class="proj-title">Algeria Wildfire Risk Mapping</div>
-          <p class="proj-desc">Geospatial wildfire risk model using NASA FIRMS fire detection data. Maps historical patterns across Algerian territory to produce regional risk scores.</p>
-          <div class="proj-chips"><span class="proj-chip">geospatial</span><span class="proj-chip">NASA FIRMS</span><span class="proj-chip">geopandas</span><span class="proj-chip">risk modeling</span></div>
-        </div>
-        <div class="proj-arrow-col"><span class="proj-arrow">↗</span></div>
-      </a>
-
-      <!-- 03 -->
-      <a href="#" class="proj">
-        <div class="proj-num-col"><span class="proj-num">03</span></div>
-        <div class="proj-body">
-          <div class="proj-meta"><span class="proj-label">Commerce</span><span class="status-dot soon">planned</span></div>
-          <div class="proj-title">Sales &amp; Commerce Analytics</div>
-          <p class="proj-desc">End-to-end sales prediction and customer segmentation pipeline. Purchasing behavior patterns and a forecasting model built on retail data.</p>
-          <div class="proj-chips"><span class="proj-chip">regression</span><span class="proj-chip">clustering</span><span class="proj-chip">EDA</span><span class="proj-chip">time series</span></div>
-        </div>
-        <div class="proj-arrow-col"><span class="proj-arrow">↗</span></div>
-      </a>
-
-      <!-- 04 -->
-      <a href="#" class="proj">
-        <div class="proj-num-col"><span class="proj-num">04</span></div>
-        <div class="proj-body">
-          <div class="proj-meta"><span class="proj-label">Conflict</span><span class="status-dot soon">planned</span></div>
-          <div class="proj-title">Conflict Analytics</div>
-          <p class="proj-desc">Quantitative analysis of conflict event data. Spatial and temporal pattern detection combining NLP and geospatial methods on open-source datasets.</p>
-          <div class="proj-chips"><span class="proj-chip">NLP</span><span class="proj-chip">geospatial</span><span class="proj-chip">ACLED</span><span class="proj-chip">pattern analysis</span></div>
-        </div>
-        <div class="proj-arrow-col"><span class="proj-arrow">↗</span></div>
-      </a>
-
-      <!-- 05 -->
-      <a href="#" class="proj">
-        <div class="proj-num-col"><span class="proj-num">05</span></div>
-        <div class="proj-body">
-          <div class="proj-meta"><span class="proj-label">Labor Market</span><span class="status-dot soon">planned</span></div>
-          <div class="proj-title">Job Market Analysis</div>
-          <p class="proj-desc">Scraping and analyzing data science job postings to extract skill demand trends, salary patterns, and geographic distributions. A meta-project built from genuine career research.</p>
-          <div class="proj-chips"><span class="proj-chip">web scraping</span><span class="proj-chip">NLP</span><span class="proj-chip">pandas</span><span class="proj-chip">visualization</span></div>
-        </div>
-        <div class="proj-arrow-col"><span class="proj-arrow">↗</span></div>
-      </a>
-
-      <!-- 06 -->
-      <a href="#" class="proj">
-        <div class="proj-num-col"><span class="proj-num">06</span></div>
-        <div class="proj-body">
-          <div class="proj-meta"><span class="proj-label">Behavioral</span><span class="status-dot soon">planned</span></div>
-          <div class="proj-title">Behavioral Change Patterns</div>
-          <p class="proj-desc">Personal exploratory project using data to study procrastination, avoidance, and the gap between self-awareness and action. Psych theory meets self-tracking data.</p>
-          <div class="proj-chips"><span class="proj-chip">behavioral data</span><span class="proj-chip">psychology</span><span class="proj-chip">self-tracking</span><span class="proj-chip">exploratory</span></div>
-        </div>
-        <div class="proj-arrow-col"><span class="proj-arrow">↗</span></div>
-      </a>
-
-    </div>
+    <div class="projects-layout" id="projects-layout"></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="section-inner">
     <div class="eyebrow">
@@ -408,40 +264,24 @@ footer{position:relative;z-index:1;padding:1.75rem 3rem;border-top:1px solid var
     <div class="contact-layout">
       <div>
         <h3 class="contact-heading">Let's<br/><em>talk.</em></h3>
-        <p class="contact-sub">I'm open to internship opportunities, research collaborations, and connecting with people working at the intersection of data, health, and behavior.</p>
-        <a href="mailto:your@email.com" class="contact-mail">✉ your@email.com</a>
+        <p class="contact-sub" id="contact-blurb"></p>
+        <a class="contact-mail" id="contact-email" href="#">loading...</a>
       </div>
-      <div class="link-list">
-        <a href="https://github.com/sarahgdjl" target="_blank" rel="noopener" class="link-item">
-          <span class="link-platform">GitHub</span>
-          <span>github.com/yourusername</span>
-          <span class="link-arr">↗</span>
-        </a>
-        <a href="https://linkedin.com/in/sarah-goudjil-5b7384300" target="_blank" rel="noopener" class="link-item">
-          <span class="link-platform">LinkedIn</span>
-          <span>linkedin.com/in/yourprofile</span>
-          <span class="link-arr">↗</span> 
-        </a>
-        <a href="https://kaggle.com/yourusername" target="_blank" rel="noopener" class="link-item">
-          <span class="link-platform">Kaggle</span>
-          <span>kaggle.com/yourusername</span>
-          <span class="link-arr">↗</span>
-        </a>
-      </div>
+      <div class="link-list" id="contact-links"></div>
     </div>
   </div>
 </section>
 
 <footer>
-  <span class="footer-sig">Sarah Goudjil</span>
+  <span class="footer-sig" id="footer-name">Sarah Goudjil</span>
   <span class="footer-mono">© 2025 · Algiers, DZ</span>
 </footer>
-
 
 <script>
 async function loadData() {
   try {
     const res = await fetch('data.json');
+    if (!res.ok) throw new Error('data.json not found');
     const data = await res.json();
     renderHero(data.hero);
     renderAbout(data.about);
@@ -453,23 +293,25 @@ async function loadData() {
   }
 }
 
-function renderHero(hero) {
-  document.querySelector('.name-first').textContent = hero.firstName;
-  document.querySelector('.name-last').textContent = hero.lastName;
-  document.querySelector('.kicker-text').textContent = hero.title;
-  document.querySelector('.hero-desc').innerHTML = hero.description;
-  document.querySelector('.hero-stats').innerHTML = hero.stats.map(s => `
+function renderHero(h) {
+  document.getElementById('hero-firstname').textContent = h.firstName;
+  document.getElementById('hero-lastname').textContent = h.lastName;
+  document.getElementById('hero-tagline').textContent = h.title;
+  document.getElementById('hero-desc').innerHTML = h.description;
+  document.querySelector('.nav-logo').innerHTML = `${h.firstName} <em>${h.lastName.charAt(0)}.</em>`;
+  document.getElementById('footer-name').textContent = `${h.firstName} ${h.lastName}`;
+  document.getElementById('hero-stats').innerHTML = h.stats.map(s => `
     <div class="stat">
       <div class="stat-n">${s.value}</div>
       <div class="stat-l">${s.label}</div>
     </div>`).join('');
 }
 
-function renderAbout(about) {
-  document.querySelector('.about-text').innerHTML =
-    about.paragraphs.map(p => `<p>${p}</p>`).join('');
-  document.querySelector('.info-stack').innerHTML =
-    about.info.map(i => `
+function renderAbout(a) {
+  document.getElementById('about-text').innerHTML =
+    a.paragraphs.map(p => `<p>${p}</p>`).join('');
+  document.getElementById('about-info').innerHTML =
+    a.info.map(i => `
       <div class="info-row">
         <span class="info-key">${i.key}</span>
         <span class="info-val">${i.value}</span>
@@ -477,7 +319,7 @@ function renderAbout(about) {
 }
 
 function renderSkills(skills) {
-  document.querySelector('.skills-layout').innerHTML =
+  document.getElementById('skills-layout').innerHTML =
     skills.map(s => `
       <div class="skill-block">
         <div class="skill-block-label">${s.category}</div>
@@ -488,49 +330,62 @@ function renderSkills(skills) {
 }
 
 function renderProjects(projects) {
-  document.querySelector('.projects-layout').innerHTML =
+  document.getElementById('projects-layout').innerHTML =
     projects.map((p, idx) => {
       const status = p.status === 'live'
         ? `<span class="status-dot live">in progress</span>`
         : `<span class="status-dot soon">planned</span>`;
       const chips = p.tags.map(t => `<span class="proj-chip">${t}</span>`).join('');
+      const link = p.link || '#';
       if (p.featured) {
-        return `<a href="${p.link}" class="proj featured">
-          <div class="proj-featured-inner">
-            <div class="proj-meta"><span class="proj-label">${p.label}</span>${status}</div>
-            <div class="proj-title">${p.title}</div>
-            <p class="proj-desc">${p.desc}</p>
-            <div class="proj-chips">${chips}</div>
-          </div></a>`;
+        return `
+          <a href="${link}" class="proj featured">
+            <div class="proj-featured-inner">
+              <div class="proj-meta">
+                <span class="proj-label">${p.label || 'Featured · 01'}</span>
+                ${status}
+              </div>
+              <div class="proj-title">${p.title}</div>
+              <p class="proj-desc">${p.desc}</p>
+              <div class="proj-chips">${chips}</div>
+            </div>
+          </a>`;
       } else {
-        return `<a href="${p.link}" class="proj">
-          <div class="proj-num-col"><span class="proj-num">${String(idx+1).padStart(2,'0')}</span></div>
-          <div class="proj-body">
-            <div class="proj-meta"><span class="proj-label">${p.label}</span>${status}</div>
-            <div class="proj-title">${p.title}</div>
-            <p class="proj-desc">${p.desc}</p>
-            <div class="proj-chips">${chips}</div>
-          </div>
-          <div class="proj-arrow-col"><span class="proj-arrow">↗</span></div></a>`;
+        return `
+          <a href="${link}" class="proj">
+            <div class="proj-num-col">
+              <span class="proj-num">${String(idx + 1).padStart(2, '0')}</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="proj-label">${p.label || ''}</span>
+                ${status}
+              </div>
+              <div class="proj-title">${p.title}</div>
+              <p class="proj-desc">${p.desc}</p>
+              <div class="proj-chips">${chips}</div>
+            </div>
+            <div class="proj-arrow-col"><span class="proj-arrow">↗</span></div>
+          </a>`;
       }
     }).join('');
 }
 
-function renderContact(contact) {
-  document.querySelector('.contact-mail').href = `mailto:${contact.email}`;
-  document.querySelector('.contact-mail').innerHTML = `✉ ${contact.email}`;
-  document.querySelector('.contact-sub').textContent = contact.blurb;
-  document.querySelector('.link-list').innerHTML =
-    contact.links.map(l => `
+function renderContact(c) {
+  document.getElementById('contact-blurb').textContent = c.blurb;
+  const emailEl = document.getElementById('contact-email');
+  emailEl.href = `mailto:${c.email}`;
+  emailEl.textContent = `✉ ${c.email}`;
+  document.getElementById('contact-links').innerHTML =
+    c.links.map(l => `
       <a href="${l.url}" target="_blank" rel="noopener" class="link-item">
         <span class="link-platform">${l.platform}</span>
-        <span>${l.url.replace('https://','')}</span>
+        <span>${l.url.replace('https://', '')}</span>
         <span class="link-arr">↗</span>
       </a>`).join('');
 }
 
 loadData();
 </script>
-
 </body>
 </html>
