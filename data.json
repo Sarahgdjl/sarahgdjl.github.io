@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "firstName": "Sarah",
+    "lastName": "Goudjil",
+    "title": "Data Scientist · Algiers",
+    "description": "M.Sc. Data Science student with a background in psychology & neuroscience.",
+    "stats": [
+      {"value": "6", "label": "projects"},
+      {"value": "3", "label": "domains"},
+      {"value": "M1", "label": "current year"}
+    ]
+  },
+  "about": {
+    "paragraphs": [
+      "I'm a first-year Data Science master's student...",
+      "I'm currently developing a portfolio...",
+      "I prioritize hands-on learning...",
+      "Outside of tech, I design and sew clothes..."
+    ],
+    "info": [
+      {"key": "Location", "value": "Algiers, Algeria"},
+      {"key": "Education", "value": "M.Sc. Data Science (M1)"}
+    ]
+  },
+  "skills": [
+    {
+      "category": "Languages & Tools",
+      "items": ["Python", "SQL", "R", "Jupyter"]
+    },
+    {
+      "category": "Machine Learning",
+      "items": ["scikit-learn", "XGBoost"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Depression Risk Prediction Model",
+      "desc": "A clinical risk prediction model...",
+      "tags": ["classification", "health data"],
+      "status": "live",
+      "featured": true
+    }
+  ],
+  "contact": {
+    "email": "your@email.com",
+    "links": [
+      {"platform": "GitHub", "url": "https://github.com/sarahgdjl"},
+      {"platform": "LinkedIn", "url": "https://linkedin.com/in/yourprofile"}
+    ]
+  }
+}

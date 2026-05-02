@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Admin · Sarah Goudjil</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0608;
+    --bg2: #100b0d;
+    --bg3: #160e11;
+    --card: #120d0f;
+    --card2: #1a1015;
+    --red: #77190e;
+    --red2: #e84c3d;
+    --red-dim: rgba(192,57,43,0.15);
+    --red-glow: rgba(192,57,43,0.08);
+    --blue: #3a7bd5;
+    --blue2: #5b9cf6;
+    --blue-dim: rgba(58,123,213,0.15);
+    --blue-glow: rgba(58,123,213,0.07);
+    --text: #ede8e9;
+    --text2: #b8a8ab;
+    --muted: #6e5a5e;
+    --dim: #2e2025;
+    --border: rgba(192,57,43,0.1);
+    --border2: rgba(192,57,43,0.22);
+    --border-blue: rgba(58,123,213,0.18);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* subtle noise texture (identical to index) */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ADMIN LAYOUT (SIDEBAR + MAIN) but with index visual flair */
+  .admin-shell {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== SIDEBAR ===== (matches index tone: dark, red accents, mono) */
+  .admin-sidebar {
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    padding: 2rem 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(2px);
+  }
+
+  .sidebar-header {
+    padding: 0 1.5rem 1.8rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+  }
+  .logo-admin {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .logo-admin em { color: var(--red2); font-style: italic; }
+  .logo-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    margin-top: 6px;
+  }
+
+  .admin-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0 0.75rem;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.6rem 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-left: 2px solid transparent;
+    border-radius: 2px;
+  }
+  .nav-item:hover {
+    color: var(--text);
+    background: var(--red-glow);
+  }
+  .nav-item.active {
+    color: var(--red2);
+    border-left-color: var(--red2);
+    background: var(--red-dim);
+  }
+  .nav-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--dim);
+    transition: background 0.2s;
+  }
+  .nav-item.active .nav-dot {
+    background: var(--red2);
+    box-shadow: 0 0 4px var(--red2);
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .btn-gen {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--red);
+    color: #fff;
+    border: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+  .btn-gen:hover {
+    background: var(--red2);
+  }
+
+  /* MAIN PANEL */
+  .admin-main {
+    padding: 2rem 2.5rem;
+    max-width: 880px;
+  }
+  .page { display: none; }
+  .page.active { display: block; }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+  .page-sub {
+    color: var(--text2);
+    font-size: 13px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.04em;
+    margin-bottom: 2rem;
+    border-left: 2px solid var(--red2);
+    padding-left: 0.8rem;
+  }
+
+  /* FORM STYLES (matches index elegant dark forms) */
+  .form-section {
+    margin-bottom: 2.5rem;
+  }
+  .form-section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--red2);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .field-row.full { grid-template-columns: 1fr; }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  input, textarea, select {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    padding: 0.6rem 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--red2);
+    box-shadow: 0 0 0 1px rgba(232,76,61,0.2);
+  }
+  textarea { resize: vertical; min-height: 85px; line-height: 1.6; }
+
+  /* TAGS INPUT */
+  .tags-input-wrapper {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 6px 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-height: 44px;
+    cursor: text;
+    transition: border 0.15s;
+  }
+  .tags-input-wrapper:focus-within {
+    border-color: var(--red2);
+  }
+  .tag-pill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--blue-dim);
+    border: 1px solid var(--border-blue);
+    color: var(--blue2);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+  .tag-pill button {
+    background: none;
+    border: none;
+    color: var(--blue2);
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1;
+    opacity: 0.6;
+  }
+  .tag-pill button:hover { opacity: 1; }
+  .tags-real-input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-size: 12px;
+    font-family: 'Outfit', sans-serif;
+    min-width: 80px;
+    flex: 1;
+    padding: 2px 4px;
+  }
+
+  /* PROJECTS LIST (cards with toggle, index-style) */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .project-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    transition: all 0.15s;
+  }
+  .project-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+  }
+  .project-block-header:hover {
+    background: var(--red-glow);
+  }
+  .proj-title-preview {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--text);
+  }
+  .proj-idx {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--red2);
+    letter-spacing: 0.1em;
+    margin-bottom: 3px;
+  }
+  .proj-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .btn-icon {
+    background: none;
+    border: 1px solid var(--dim);
+    color: var(--muted);
+    border-radius: 2px;
+    padding: 4px 10px;
+    font-size: 10px;
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    transition: 0.15s;
+  }
+  .btn-icon.danger:hover {
+    border-color: var(--red2);
+    color: var(--red2);
+    background: var(--red-glow);
+  }
+  .chevron {
+    font-size: 10px;
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+  .project-block.open .chevron { transform: rotate(180deg); }
+  .project-block-body {
+    display: none;
+    padding: 0 1.2rem 1.2rem;
+    border-top: 1px solid var(--border);
+  }
+  .project-block.open .project-block-body {
+    display: block;
+    padding-top: 1rem;
+  }
+  .add-project-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 0.8rem;
+    background: none;
+    border: 1px dashed var(--dim);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+    border-radius: 2px;
+  }
+  .add-project-btn:hover {
+    border-color: var(--red2);
+    color: var(--red2);
+    background: var(--red-dim);
+  }
+
+  /* WELCOME CARDS (index style) */
+  .welcome-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-top: 1rem;
+  }
+  .welcome-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .welcome-card:hover {
+    border-color: var(--border2);
+    background: var(--bg3);
+  }
+  .welcome-card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--red2);
+    margin-bottom: 7px;
+    letter-spacing: 0.12em;
+  }
+  .welcome-card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+  .welcome-card-desc {
+    font-size: 12px;
+    color: var(--text2);
+  }
+
+  /* TOAST */
+  #toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--red2);
+    color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 0.75rem 1.2rem;
+    border-radius: 2px;
+    letter-spacing: 0.08em;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.25s;
+    z-index: 999;
+    pointer-events: none;
+  }
+  #toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .admin-shell { grid-template-columns: 1fr; }
+    .admin-sidebar { position: static; height: auto; }
+    .admin-main { padding: 1.5rem; }
+    .field-row { grid-template-columns: 1fr; }
+    .welcome-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="admin-shell">
+  <!-- SIDEBAR with same flair as index -->
+  <aside class="admin-sidebar">
+    <div class="sidebar-header">
+      <div class="logo-admin">Sarah <em>G.</em></div>
+      <div class="logo-sub">portfolio admin · cms</div>
+    </div>
+    <div class="admin-nav">
+      <div class="nav-item active" onclick="goTo('home')"><span class="nav-dot"></span>home</div>
+      <div class="nav-item" onclick="goTo('info')"><span class="nav-dot"></span>personal info</div>
+      <div class="nav-item" onclick="goTo('about')"><span class="nav-dot"></span>about</div>
+      <div class="nav-item" onclick="goTo('skills')"><span class="nav-dot"></span>skills</div>
+      <div class="nav-item" onclick="goTo('projects')"><span class="nav-dot"></span>projects</div>
+      <div class="nav-item" onclick="goTo('contact')"><span class="nav-dot"></span>contact</div>
+    </div>
+    <div class="sidebar-footer">
+      <button class="btn-gen" onclick="generatePortfolio()">⟡ generate portfolio</button>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <!-- HOME page -->
+    <div class="page active" id="page-home">
+      <h1>Welcome back.</h1>
+      <p class="page-sub">Edit your portfolio content — then generate a fresh portfolio page.</p>
+      <div class="welcome-grid">
+        <div class="welcome-card" onclick="goTo('info')"><div class="welcome-card-num">01 — PERSONAL INFO</div><div class="welcome-card-title">Name & links</div><div class="welcome-card-desc">Your name, email, GitHub, LinkedIn, Kaggle</div></div>
+        <div class="welcome-card" onclick="goTo('about')"><div class="welcome-card-num">02 — ABOUT</div><div class="welcome-card-title">Bio & details</div><div class="welcome-card-desc">Background, education, focus areas</div></div>
+        <div class="welcome-card" onclick="goTo('skills')"><div class="welcome-card-num">03 — SKILLS</div><div class="welcome-card-title">Tech stack</div><div class="welcome-card-desc">Languages, tools, ML frameworks, domains</div></div>
+        <div class="welcome-card" onclick="goTo('projects')"><div class="welcome-card-num">04 — PROJECTS</div><div class="welcome-card-title">Portfolio projects</div><div class="welcome-card-desc">Add, edit, and reorder projects</div></div>
+      </div>
+    </div>
+
+    <!-- PERSONAL INFO -->
+    <div class="page" id="page-info">
+      <h1>Personal info</h1>
+      <p class="page-sub">Hero section & footer identity.</p>
+      <div class="form-section"><div class="form-section-title">Identity</div>
+        <div class="field-row"><div class="field"><label>First name</label><input id="firstName" placeholder="Sarah"></div><div class="field"><label>Last name</label><input id="lastName" placeholder="Goudjil"></div></div>
+        <div class="field-row full"><div class="field"><label>Tagline (under name)</label><input id="tagline" placeholder="data scientist & researcher"></div></div>
+        <div class="field-row full"><div class="field"><label>Hero subtitle</label><textarea id="heroSub" rows="2" placeholder="M.Sc. Data Science student with a background in psychology & neuroscience."></textarea></div></div>
+      </div>
+      <div class="form-section"><div class="form-section-title">Quick stats</div>
+        <div class="field-row"><div class="field"><label>Stat 1 number</label><input id="stat1num" value="6"></div><div class="field"><label>Stat 1 label</label><input id="stat1label" value="portfolio projects"></div></div>
+        <div class="field-row"><div class="field"><label>Stat 2 number</label><input id="stat2num" value="3"></div><div class="field"><label>Stat 2 label</label><input id="stat2label" value="domains covered"></div></div>
+        <div class="field-row"><div class="field"><label>Stat 3 number</label><input id="stat3num" value="M1"></div><div class="field"><label>Stat 3 label</label><input id="stat3label" value="currently in"></div></div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="page" id="page-about">
+      <h1>About</h1>
+      <p class="page-sub">Bio and right-side detail rows.</p>
+      <div class="form-section"><div class="form-section-title">Bio paragraphs</div>
+        <div class="field-row full"><div class="field"><label>Paragraph 1</label><textarea id="bio1" rows="3">I'm a first-year Data Science master's student based in Algiers, Algeria, with a bachelor's degree in Computer Systems. My background in software engineering and systems architecture shapes how I approach problems — focusing on building scalable, efficient, and data-driven solutions.</textarea></div></div>
+        <div class="field-row full"><div class="field"><label>Paragraph 2</label><textarea id="bio2" rows="3">I'm currently developing a portfolio of projects at the intersection of data science and web technologies, including predictive modeling, data analysis, and full-stack applications with integrated machine learning components.</textarea></div></div>
+        <div class="field-row full"><div class="field"><label>Paragraph 3 (optional)</label><textarea id="bio3" rows="2">Outside of tech, I design and sew clothes — an activity that reinforces my attention to detail and iterative approach to building and improving systems.</textarea></div></div>
+      </div>
+      <div class="form-section"><div class="form-section-title">Detail rows</div>
+        <div class="field-row"><div class="field"><label>Location</label><input id="detLocation" value="Algiers, Algeria"></div><div class="field"><label>Education</label><input id="detEducation" value="M.Sc. Data Science (M1)"></div></div>
+        <div class="field-row"><div class="field"><label>Background</label><input id="detBackground" value="Computer Systems"></div><div class="field"><label>Focus</label><input id="detFocus" value="Machine Learning · Data Analysis · Web Applications"></div></div>
+        <div class="field-row"><div class="field"><label>Languages</label><input id="detLanguages" value="French, English, Arabic"></div><div class="field"><label>Stack/Tools</label><input id="detEnv" value="Python · SQL · JavaScript · APIs"></div></div>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="page" id="page-skills">
+      <h1>Skills</h1>
+      <p class="page-sub">Press Enter or comma to add tags.</p>
+      <div class="form-section"><div class="form-section-title">Languages & Tools</div><div id="tags-lang" class="tags-input-wrapper"></div></div>
+      <div class="form-section"><div class="form-section-title">Machine Learning</div><div id="tags-ml" class="tags-input-wrapper"></div></div>
+      <div class="form-section"><div class="form-section-title">Data & Visualization</div><div id="tags-viz" class="tags-input-wrapper"></div></div>
+      <div class="form-section"><div class="form-section-title">Domain Knowledge</div><div id="tags-domain" class="tags-input-wrapper"></div></div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="page" id="page-projects">
+      <h1>Projects</h1>
+      <p class="page-sub">First project becomes featured.</p>
+      <div class="projects-list" id="projects-list"></div>
+      <button class="add-project-btn" onclick="addProject()">+ add project</button>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="page" id="page-contact">
+      <h1>Contact</h1>
+      <p class="page-sub">Email, blurb & link profiles.</p>
+      <div class="form-section"><div class="form-section-title">Contact info</div>
+        <div class="field-row full"><div class="field"><label>Email</label><input id="contactEmail" value="your@email.com"></div></div>
+        <div class="field-row full"><div class="field"><label>Contact blurb</label><textarea id="contactBlurb" rows="2">I'm open to internship opportunities, research collaborations, and connecting with people working at the intersection of data, health, and behavior.</textarea></div></div>
+      </div>
+      <div class="form-section"><div class="form-section-title">Profiles</div>
+        <div class="field-row full"><div class="field"><label>GitHub URL</label><input id="linkGithub" value="https://github.com/yourusername"></div></div>
+        <div class="field-row full"><div class="field"><label>LinkedIn URL</label><input id="linkLinkedin" value="https://linkedin.com/in/yourprofile"></div></div>
+        <div class="field-row full"><div class="field"><label>Kaggle URL</label><input id="linkKaggle" value="https://kaggle.com/yourusername"></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<div id="toast">✨ portfolio generated! ✨</div>
+
+<script>
+  // ---- SKILLS DATA ----
+  const skillTags = {
+    'tags-lang': ['Python','SQL','R','Jupyter','Kaggle','Git'],
+    'tags-ml': ['scikit-learn','XGBoost','Random Forest','Logistic Reg.','Feature Engineering'],
+    'tags-viz': ['pandas','numpy','matplotlib','seaborn','plotly'],
+    'tags-domain': ['Survey data (NHANES)','Geospatial (NASA FIRMS)','NLP basics','Stats & probability','Psych research methods']
+  };
+
+  let projects = [
+    {id:1, title:'Depression Risk Prediction Model', index:'PROJECT_01', desc:'A clinical risk prediction model using the CDC NHANES survey dataset. Combines behavioral, demographic, and physiological variables to predict depression risk scores.', tags:['classification','health data','NHANES','scikit-learn','feature selection','neuroscience'], status:'active', link:'#'},
+    {id:2, title:'Algeria Wildfire Risk Mapping', index:'PROJECT_02', desc:'Geospatial wildfire risk model using NASA FIRMS fire detection data. Maps historical patterns across Algerian territory to produce regional risk scores.', tags:['geospatial','NASA FIRMS','risk modeling','geopandas'], status:'planned', link:'#'},
+    {id:3, title:'Commerce & Sales Analytics', index:'PROJECT_03', desc:'End-to-end sales prediction and customer segmentation pipeline. Explores purchasing behavior patterns and builds a forecasting model.', tags:['regression','clustering','EDA','time series'], status:'planned', link:'#'},
+    {id:4, title:'Conflict Analytics', index:'PROJECT_04', desc:'Quantitative analysis of conflict event data. Identifies spatial and temporal patterns using open-source datasets, combining NLP and geospatial methods.', tags:['NLP','geospatial','ACLED','pattern analysis'], status:'planned', link:'#'},
+    {id:5, title:'Job Market Analysis', index:'PROJECT_05', desc:'Scraping and analyzing data science job postings to extract skill demand trends, salary patterns, and geographic distributions.', tags:['web scraping','NLP','pandas','visualization'], status:'planned', link:'#'},
+    {id:6, title:'Behavioral Change Patterns', index:'PROJECT_06', desc:'Personal exploratory project using data to study procrastination, avoidance, and the gap between self-awareness and behavior change.', tags:['behavioral data','psychology','self-tracking','exploratory'], status:'planned', link:'#'}
+  ];
+
+  // ---- navigation ----
+  function goTo(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById(`page-${id}`).classList.add('active');
+    const items = document.querySelectorAll('.nav-item');
+    const map = ['home','info','about','skills','projects','contact'];
+    const idx = map.indexOf(id);
+    if (items[idx]) items[idx].classList.add('active');
+    if (id === 'projects') renderProjects();
+  }
+
+  // ---- tags components ----
+  function initTagsInput(containerId, initialTags) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    initialTags.forEach(t => addTagPill(container, t, containerId));
+    const input = document.createElement('input');
+    input.className = 'tags-real-input';
+    input.placeholder = 'type + enter';
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        let val = input.value.trim().replace(/,$/,'');
+        if (val) { addTagPill(container, val, containerId); skillTags[containerId].push(val); }
+        input.value = '';
+      } else if (e.key === 'Backspace' && input.value === '' && skillTags[containerId].length) {
+        skillTags[containerId].pop();
+        const pills = container.querySelectorAll('.tag-pill');
+        if (pills.length) pills[pills.length-1].remove();
+      }
+    });
+    container.appendChild(input);
+  }
+  function addTagPill(container, text, containerId) {
+    const pill = document.createElement('span');
+    pill.className = 'tag-pill';
+    pill.innerHTML = `${text}<button onclick="removeTag(this,'${containerId}','${text.replace(/'/g, "\\'")}')">×</button>`;
+    container.insertBefore(pill, container.querySelector('.tags-real-input'));
+  }
+  window.removeTag = function(btn, containerId, text) {
+    btn.parentElement.remove();
+    skillTags[containerId] = skillTags[containerId].filter(t => t !== text);
+  };
+  function focusTagInput(id) { document.getElementById(id)?.querySelector('.tags-real-input')?.focus(); }
+  // attach focus globally
+  document.querySelectorAll('.tags-input-wrapper').forEach(w => w.addEventListener('click', (e) => { if(e.target === w) focusTagInput(w.id); }));
+
+  // ---- projects rendering ----
+  function renderProjects() {
+    const list = document.getElementById('projects-list');
+    if (!list) return;
+    list.innerHTML = '';
+    projects.forEach((p, i) => {
+      const block = document.createElement('div');
+      block.className = 'project-block';
+      block.innerHTML = `
+        <div class="project-block-header" onclick="toggleBlock(this)">
+          <div><div class="proj-idx">${p.index || 'PROJECT_0'+(i+1)}</div><div class="proj-title-preview">${escapeHtml(p.title)}</div></div>
+          <div class="proj-actions"><button class="btn-icon danger" onclick="deleteProject(event,${p.id})">remove</button><span class="chevron">▼</span></div>
+        </div>
+        <div class="project-block-body">
+          <div class="field-row"><div class="field"><label>Title</label><input value="${escapeHtml(p.title)}" oninput="updateProject(${p.id},'title',this.value)"></div>
+          <div class="field"><label>Status</label><select onchange="updateProject(${p.id},'status',this.value)"><option ${p.status==='active'?'selected':''} value="active">active</option><option ${p.status==='planned'?'selected':''} value="planned">planned</option></select></div></div>
+          <div class="field-row full"><div class="field"><label>Link</label><input value="${escapeHtml(p.link)}" oninput="updateProject(${p.id},'link',this.value)"></div></div>
+          <div class="field-row full"><div class="field"><label>Description</label><textarea rows="2" oninput="updateProject(${p.id},'desc',this.value)">${escapeHtml(p.desc)}</textarea></div></div>
+          <div class="field-row full"><div class="field"><label>Tags (comma-separated)</label><input value="${p.tags.join(', ')}" oninput="updateProject(${p.id},'tags',this.value)"></div></div>
+        </div>
+      `;
+      list.appendChild(block);
+    });
+  }
+  window.toggleBlock = function(header) { header.closest('.project-block').classList.toggle('open'); };
+  window.updateProject = function(id, field, val) {
+    const p = projects.find(x=>x.id===id);
+    if(!p) return;
+    if(field==='tags') p.tags = val.split(',').map(t=>t.trim()).filter(Boolean);
+    else p[field] = val;
+    if(field==='title'){ const preview = document.querySelector(`.project-block-header .proj-title-preview`); if(preview) preview.innerText = val; }
+  };
+  window.deleteProject = function(e, id) { e.stopPropagation(); projects = projects.filter(p=>p.id!==id); renderProjects(); };
+  window.addProject = function() {
+    const id = Date.now();
+    const n = projects.length+1;
+    projects.push({id, title:'New project', index:`PROJECT_0${n}`, desc:'', tags:[], status:'planned', link:'#'});
+    renderProjects();
+    const blocks = document.querySelectorAll('.project-block');
+    if(blocks.length) blocks[blocks.length-1].classList.add('open');
+  };
+
+  function escapeHtml(str) { return (str||'').replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+
+  // ---- generate portfolio (matching original but with index style) ----
+  function g(id) { return (document.getElementById(id)||{}).value || ''; }
+  function generatePortfolio() {
+    const firstName = g('firstName')||'Sarah';
+    const lastName = g('lastName')||'Goudjil';
+    const tagline = g('tagline')||'data scientist & researcher';
+    const heroSub = g('heroSub')||'M.Sc. Data Science student with psychology background.';
+    const stat1n = g('stat1num')||'6', stat1l = g('stat1label')||'projects';
+    const stat2n = g('stat2num')||'3', stat2l = g('stat2label')||'domains';
+    const stat3n = g('stat3num')||'M1', stat3l = g('stat3label')||'current year';
+    const bio1 = g('bio1')||"I'm a first-year Data Science master's student based in Algiers, Algeria.", bio2 = g('bio2')||"Portfolio of six projects across predictive modeling and analytics.", bio3 = g('bio3')||"Design and sew clothes — iterative problem-solving.";
+    const detLoc = g('detLocation')||'Algiers, Algeria', detEdu = g('detEducation')||'M.Sc. Data Science (M1)';
+    const detBg = g('detBackground')||'Computer Systems', detFoc = g('detFocus')||'Machine Learning · Web Apps';
+    const detLan = g('detLanguages')||'French, English, Arabic', detEnv = g('detEnv')||'Python · SQL · JavaScript';
+    const email = g('contactEmail')||'your@email.com', blurb = g('contactBlurb')||"I'm open to opportunities.", gh = g('linkGithub'), li = g('linkLinkedin'), kg = g('linkKaggle');
+    const langTags = skillTags['tags-lang'] || [], mlTags = skillTags['tags-ml'] || [], vizTags = skillTags['tags-viz'] || [], domainTags = skillTags['tags-domain'] || [];
+    const featuredProject = projects.length ? projects[0] : null;
+    const projectsHtml = projects.map((p, idx) => {
+      const tagsHtml = p.tags.map(t => `<span class="proj-chip">${escapeHtml(t)}</span>`).join('');
+      const statusMarker = p.status==='active' ? '<span class="status-dot live">active</span>' : '<span class="status-dot soon">planned</span>';
+      if(idx === 0) {
+        return `<a href="${p.link}" class="proj featured"><div class="proj-featured-inner"><div class="proj-meta"><span class="proj-label">Featured · ${p.index||'01'}</span>${statusMarker}</div><div class="proj-title">${escapeHtml(p.title)}</div><p class="proj-desc">${escapeHtml(p.desc)}</p><div class="proj-chips">${tagsHtml}</div></div></a>`;
+      } else {
+        return `<a href="${p.link}" class="proj"><div class="proj-num-col"><span class="proj-num">${String(idx+1).padStart(2,'0')}</span></div><div class="proj-body"><div class="proj-meta"><span class="proj-label">${p.index||'PROJECT'}</span>${statusMarker}</div><div class="proj-title">${escapeHtml(p.title)}</div><p class="proj-desc">${escapeHtml(p.desc)}</p><div class="proj-chips">${tagsHtml}</div></div><div class="proj-arrow-col"><span class="proj-arrow">↗</span></div></a>`;
+      }
+    }).join('');
+    const fullHtml = `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${firstName} ${lastName} — Data Scientist</title><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"><style>${document.querySelector('style').innerHTML}</style></head><body><nav><a href="#hero" class="nav-logo">${firstName} <em>${lastName.charAt(0)}.</em></a><ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#projects">Projects</a></li><li><a href="#contact">Contact</a></li></ul></nav><section id="hero"><div class="hero-kicker"><span class="kicker-line"></span><span class="kicker-text">${tagline} · Algiers</span></div><h1><span class="name-first">${firstName}</span><span class="name-last">${lastName}</span></h1><div class="hero-body"><p class="hero-desc">${heroSub}</p><div class="hero-right"><div class="hero-stats"><div class="stat"><div class="stat-n">${stat1n}</div><div class="stat-l">${stat1l}</div></div><div class="stat"><div class="stat-n">${stat2n}</div><div class="stat-l">${stat2l}</div></div><div class="stat"><div class="stat-n">${stat3n}</div><div class="stat-l">${stat3l}</div></div></div><div class="hero-cta"><a href="#projects" class="btn btn-red">View work →</a><a href="#contact" class="btn btn-ghost">Get in touch</a></div></div></div><div class="hero-scroll">scroll</div></section><div class="divider"></div><section id="about"><div class="section-inner"><div class="eyebrow"><span class="eyebrow-num">01</span><h2 class="eyebrow-title">About</h2><div class="eyebrow-rule"></div></div><div class="about-layout"><div class="about-text"><p>${bio1}</p><p>${bio2}</p><p>${bio3}</p></div><div class="info-stack"><div class="info-row"><span class="info-key">Location</span><span class="info-val">${detLoc}</span></div><div class="info-row"><span class="info-key">Education</span><span class="info-val">${detEdu}</span></div><div class="info-row"><span class="info-key">Background</span><span class="info-val">${detBg}</span></div><div class="info-row"><span class="info-key">Focus</span><span class="info-val">${detFoc}</span></div><div class="info-row"><span class="info-key">Languages</span><span class="info-val">${detLan}</span></div><div class="info-row"><span class="info-key">Stack</span><span class="info-val">${detEnv}</span></div></div></div></div></section><div class="divider"></div><section id="skills"><div class="section-inner"><div class="eyebrow"><span class="eyebrow-num">02</span><h2 class="eyebrow-title">Skills</h2><div class="eyebrow-rule"></div></div><div class="skills-layout"><div class="skill-block"><div class="skill-block-label">Languages &amp; Tools</div><div class="skill-chips">${langTags.map(t=>`<span class="chip">${escapeHtml(t)}</span>`).join('')}</div></div><div class="skill-block"><div class="skill-block-label">Machine Learning</div><div class="skill-chips">${mlTags.map(t=>`<span class="chip">${escapeHtml(t)}</span>`).join('')}</div></div><div class="skill-block"><div class="skill-block-label">Data &amp; Visualization</div><div class="skill-chips">${vizTags.map(t=>`<span class="chip">${escapeHtml(t)}</span>`).join('')}</div></div><div class="skill-block"><div class="skill-block-label">Domain Knowledge</div><div class="skill-chips">${domainTags.map(t=>`<span class="chip">${escapeHtml(t)}</span>`).join('')}</div></div></div></div></section><div class="divider"></div><section id="projects"><div class="section-inner"><div class="eyebrow"><span class="eyebrow-num">03</span><h2 class="eyebrow-title">Projects</h2><div class="eyebrow-rule"></div></div><div class="projects-layout">${projectsHtml}</div></div></section><div class="divider"></div><section id="contact"><div class="section-inner"><div class="eyebrow"><span class="eyebrow-num">04</span><h2 class="eyebrow-title">Contact</h2><div class="eyebrow-rule"></div></div><div class="contact-layout"><div><h3 class="contact-heading">Let's<br/><em>talk.</em></h3><p class="contact-sub">${blurb}</p><a href="mailto:${email}" class="contact-mail">✉ ${email}</a></div><div class="link-list"><a href="${gh}" target="_blank" class="link-item"><span class="link-platform">GitHub</span><span>${gh.replace('https://','')}</span><span class="link-arr">↗</span></a><a href="${li}" target="_blank" class="link-item"><span class="link-platform">LinkedIn</span><span>${li.replace('https://','')}</span><span class="link-arr">↗</span></a><a href="${kg}" target="_blank" class="link-item"><span class="link-platform">Kaggle</span><span>${kg.replace('https://','')}</span><span class="link-arr">↗</span></a></div></div></div></section><footer><span class="footer-sig">${firstName} ${lastName}</span><span class="footer-mono">© 2025 · Algiers, DZ</span></footer></body></html>`;
+    const blob = new Blob([fullHtml], {type:'text/html'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'portfolio.html'; a.click();
+    URL.revokeObjectURL(url);
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'), 2500);
+  }
+
+  // initial render
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('firstName').value = 'Sarah';
+    document.getElementById('lastName').value = 'Goudjil';
+    document.getElementById('tagline').value = 'data scientist & researcher';
+    document.getElementById('heroSub').value = "M.Sc. Data Science student with a background in psychology & neuroscience. I build models that sit at the intersection of human behavior and data.";
+    Object.keys(skillTags).forEach(id => initTagsInput(id, skillTags[id]));
+    renderProjects();
+  });
+</script>
+</body>
+</html>
