@@ -1,9 +1,9 @@
 {
   "hero": {
-    "firstName": "Sarahhhhhhhhhhhhh",
+    "firstName": "Sarah",
     "lastName": "Goudjil",
-    "title": "data scientist & researcher",
-    "description": "M.Sc. Data Science student with a background in psychology & neuroscience. I build models that sit at the intersection of human behavior and data.",
+    "title": "Data Scientist · Algiers",
+    "description": "M.Sc. Data Science student with a background in <strong>psychology & neuroscience</strong>. I build models that sit at the intersection of human behavior and data.",
     "stats": [
       {
         "value": "6",
@@ -45,7 +45,7 @@
       },
       {
         "key": "Languages",
-        "value": "French, English, Arabic"
+        "value": "French, English, Arabic, Spanish, Turkish"
       },
       {
         "key": "Stack",
@@ -194,7 +194,7 @@
       },
       {
         "platform": "LinkedIn",
-        "url": "www.linkedin.com/in/sarah-goudjil-5b7384300"
+        "url": "https://linkedin.com/in/yourprofile"
       },
       {
         "platform": "Kaggle",
