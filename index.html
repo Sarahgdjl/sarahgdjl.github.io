@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Sarah Benmansour — Data Scientist</title>
+<title>Sarah Goudjil — Data Scientist</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -192,7 +192,7 @@ footer{position:relative;z-index:1;padding:1.75rem 3rem;border-top:1px solid var
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo">Sarah <em>B.</em></a>
+  <a href="#hero" class="nav-logo">Sarah <em>G.</em></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -209,7 +209,7 @@ footer{position:relative;z-index:1;padding:1.75rem 3rem;border-top:1px solid var
   </div>
   <h1>
     <span class="name-first">Sarah</span>
-    <span class="name-last">Benmansour</span>
+    <span class="name-last">Goudjil</span>
   </h1>
   <div class="hero-body">
     <p class="hero-desc">M.Sc. Data Science student with a background in <strong>psychology &amp; neuroscience</strong>. I build models that sit at the intersection of human behavior and data.</p>
@@ -240,17 +240,21 @@ footer{position:relative;z-index:1;padding:1.75rem 3rem;border-top:1px solid var
     </div>
     <div class="about-layout">
       <div class="about-text">
-        <p>I'm a first-year Data Science master's student based in <strong>Algiers, Algeria</strong>, with an undergraduate background in <strong>psychology and neuroscience</strong>. This combination shapes how I approach data — I'm drawn to problems involving human behavior, health, and social systems.</p>
-        <p>I'm currently building a portfolio of six projects covering clinical risk prediction, conflict analytics, and environmental modeling. I prefer to learn by doing — working through real datasets and understanding the reasoning behind each methodological choice.</p>
-        <p>Outside of data science, I design and sew clothes — which teaches me a lot about iterative problem-solving and attention to detail.</p>
+        <p>I'm a first-year Data Science master's student based in <strong>Algiers, Algeria</strong>, with a bachelor's degree in <strong>Computer Systems</strong>. My background in software engineering and systems architecture shapes how I approach problems — focusing on building scalable, efficient, and data-driven solutions.</p>
+        
+        <p>I'm currently developing a portfolio of projects at the intersection of <strong>data science and web technologies</strong>, including predictive modeling, data analysis, and full-stack applications with integrated machine learning components.</p>
+        
+        <p>I prioritize hands-on learning, working with real datasets, and understanding the statistical and algorithmic foundations behind each model — from feature engineering to evaluation.</p>
+        
+        <p>Outside of tech, I design and sew clothes — an activity that reinforces my attention to detail and iterative approach to building and improving systems.</p>
       </div>
       <div class="info-stack">
         <div class="info-row"><span class="info-key">Location</span><span class="info-val">Algiers, Algeria</span></div>
         <div class="info-row"><span class="info-key">Education</span><span class="info-val">M.Sc. Data Science (M1)</span></div>
-        <div class="info-row"><span class="info-key">Background</span><span class="info-val">Psychology &amp; Neuroscience</span></div>
-        <div class="info-row"><span class="info-key">Focus</span><span class="info-val">Health data, behavioral ML, geospatial</span></div>
+        <div class="info-row"><span class="info-key">Background</span><span class="info-val">Computer Systems</span></div>
+        <div class="info-row"><span class="info-key">Focus</span><span class="info-val">Machine Learning · Data Analysis · Web Applications</span></div>
         <div class="info-row"><span class="info-key">Languages</span><span class="info-val">French, English, Arabic</span></div>
-        <div class="info-row"><span class="info-key">Stack</span><span class="info-val">Python · Kaggle Notebooks</span></div>
+        <div class="info-row"><span class="info-key">Stack</span><span class="info-val">Python · SQL · JavaScript · APIs</span></div>
       </div>
     </div>
   </div>
@@ -429,9 +433,104 @@ footer{position:relative;z-index:1;padding:1.75rem 3rem;border-top:1px solid var
 </section>
 
 <footer>
-  <span class="footer-sig">Sarah Benmansour</span>
+  <span class="footer-sig">Sarah Goudjil</span>
   <span class="footer-mono">© 2025 · Algiers, DZ</span>
 </footer>
+
+
+<script>
+async function loadData() {
+  try {
+    const res = await fetch('data.json');
+    const data = await res.json();
+    renderHero(data.hero);
+    renderAbout(data.about);
+    renderSkills(data.skills);
+    renderProjects(data.projects);
+    renderContact(data.contact);
+  } catch(e) {
+    console.error('Could not load data.json:', e);
+  }
+}
+
+function renderHero(hero) {
+  document.querySelector('.name-first').textContent = hero.firstName;
+  document.querySelector('.name-last').textContent = hero.lastName;
+  document.querySelector('.kicker-text').textContent = hero.title;
+  document.querySelector('.hero-desc').innerHTML = hero.description;
+  document.querySelector('.hero-stats').innerHTML = hero.stats.map(s => `
+    <div class="stat">
+      <div class="stat-n">${s.value}</div>
+      <div class="stat-l">${s.label}</div>
+    </div>`).join('');
+}
+
+function renderAbout(about) {
+  document.querySelector('.about-text').innerHTML =
+    about.paragraphs.map(p => `<p>${p}</p>`).join('');
+  document.querySelector('.info-stack').innerHTML =
+    about.info.map(i => `
+      <div class="info-row">
+        <span class="info-key">${i.key}</span>
+        <span class="info-val">${i.value}</span>
+      </div>`).join('');
+}
+
+function renderSkills(skills) {
+  document.querySelector('.skills-layout').innerHTML =
+    skills.map(s => `
+      <div class="skill-block">
+        <div class="skill-block-label">${s.category}</div>
+        <div class="skill-chips">
+          ${s.items.map(i => `<span class="chip">${i}</span>`).join('')}
+        </div>
+      </div>`).join('');
+}
+
+function renderProjects(projects) {
+  document.querySelector('.projects-layout').innerHTML =
+    projects.map((p, idx) => {
+      const status = p.status === 'live'
+        ? `<span class="status-dot live">in progress</span>`
+        : `<span class="status-dot soon">planned</span>`;
+      const chips = p.tags.map(t => `<span class="proj-chip">${t}</span>`).join('');
+      if (p.featured) {
+        return `<a href="${p.link}" class="proj featured">
+          <div class="proj-featured-inner">
+            <div class="proj-meta"><span class="proj-label">${p.label}</span>${status}</div>
+            <div class="proj-title">${p.title}</div>
+            <p class="proj-desc">${p.desc}</p>
+            <div class="proj-chips">${chips}</div>
+          </div></a>`;
+      } else {
+        return `<a href="${p.link}" class="proj">
+          <div class="proj-num-col"><span class="proj-num">${String(idx+1).padStart(2,'0')}</span></div>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-label">${p.label}</span>${status}</div>
+            <div class="proj-title">${p.title}</div>
+            <p class="proj-desc">${p.desc}</p>
+            <div class="proj-chips">${chips}</div>
+          </div>
+          <div class="proj-arrow-col"><span class="proj-arrow">↗</span></div></a>`;
+      }
+    }).join('');
+}
+
+function renderContact(contact) {
+  document.querySelector('.contact-mail').href = `mailto:${contact.email}`;
+  document.querySelector('.contact-mail').innerHTML = `✉ ${contact.email}`;
+  document.querySelector('.contact-sub').textContent = contact.blurb;
+  document.querySelector('.link-list').innerHTML =
+    contact.links.map(l => `
+      <a href="${l.url}" target="_blank" rel="noopener" class="link-item">
+        <span class="link-platform">${l.platform}</span>
+        <span>${l.url.replace('https://','')}</span>
+        <span class="link-arr">↗</span>
+      </a>`).join('');
+}
+
+loadData();
+</script>
 
 </body>
 </html>
