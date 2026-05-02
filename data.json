@@ -3,49 +3,83 @@
     "firstName": "Sarah",
     "lastName": "Goudjil",
     "title": "Data Scientist · Algiers",
-    "description": "M.Sc. Data Science student with a background in psychology & neuroscience.",
+    "description": "M.Sc. Data Science student with a background in <strong>psychology & neuroscience</strong>. I build models that sit at the intersection of human behavior and data.",
     "stats": [
-      {"value": "6", "label": "projects"},
-      {"value": "3", "label": "domains"},
-      {"value": "M1", "label": "current year"}
+      { "value": "6", "label": "projects" },
+      { "value": "3", "label": "domains" },
+      { "value": "M1", "label": "current year" }
     ]
   },
   "about": {
     "paragraphs": [
-      "I'm a first-year Data Science master's student...",
-      "I'm currently developing a portfolio...",
-      "I prioritize hands-on learning...",
-      "Outside of tech, I design and sew clothes..."
+      "I'm a first-year Data Science master's student based in <strong>Algiers, Algeria</strong>, with a bachelor's degree in <strong>Computer Systems</strong>. My background in software engineering shapes how I approach problems — focusing on scalable, data-driven solutions.",
+      "I'm currently developing a portfolio of projects at the intersection of <strong>data science and web technologies</strong>, including predictive modeling, data analysis, and full-stack applications with integrated ML components.",
+      "I prioritize hands-on learning, working with real datasets, and understanding the statistical foundations behind each model.",
+      "Outside of tech, I design and sew clothes — an activity that reinforces my attention to detail and iterative approach to building systems."
     ],
     "info": [
-      {"key": "Location", "value": "Algiers, Algeria"},
-      {"key": "Education", "value": "M.Sc. Data Science (M1)"}
+      { "key": "Location", "value": "Algiers, Algeria" },
+      { "key": "Education", "value": "M.Sc. Data Science (M1)" },
+      { "key": "Background", "value": "Computer Systems" },
+      { "key": "Focus", "value": "Machine Learning · Data Analysis · Web Apps" },
+      { "key": "Languages", "value": "French, English, Arabic" },
+      { "key": "Stack", "value": "Python · SQL · JavaScript · APIs" }
     ]
   },
   "skills": [
     {
       "category": "Languages & Tools",
-      "items": ["Python", "SQL", "R", "Jupyter"]
+      "items": ["Python", "SQL", "R", "Jupyter", "Kaggle", "Git"]
     },
     {
       "category": "Machine Learning",
-      "items": ["scikit-learn", "XGBoost"]
+      "items": ["scikit-learn", "XGBoost", "Random Forest", "Logistic Reg.", "Feature Engineering"]
+    },
+    {
+      "category": "Data & Visualization",
+      "items": ["pandas", "numpy", "matplotlib", "seaborn", "plotly"]
+    },
+    {
+      "category": "Domain Knowledge",
+      "items": ["Survey data (NHANES)", "Geospatial (NASA FIRMS)", "NLP basics", "Stats & probability"]
     }
   ],
   "projects": [
     {
       "title": "Depression Risk Prediction Model",
-      "desc": "A clinical risk prediction model...",
-      "tags": ["classification", "health data"],
+      "label": "Featured · 01",
+      "desc": "A clinical risk prediction model using the CDC NHANES survey dataset. Combines behavioral, demographic, and physiological variables to predict depression risk scores.",
+      "tags": ["classification", "health data", "NHANES", "scikit-learn", "feature selection", "neuroscience"],
       "status": "live",
-      "featured": true
+      "featured": true,
+      "link": "#"
+    },
+    {
+      "title": "Algeria Wildfire Risk Mapping",
+      "label": "Geospatial",
+      "desc": "Geospatial wildfire risk model using NASA FIRMS fire detection data. Maps historical patterns across Algerian territory to produce regional risk scores.",
+      "tags": ["geospatial", "NASA FIRMS", "geopandas", "risk modeling"],
+      "status": "planned",
+      "featured": false,
+      "link": "#"
+    },
+    {
+      "title": "Sales & Commerce Analytics",
+      "label": "Commerce",
+      "desc": "End-to-end sales prediction and customer segmentation pipeline. Purchasing behavior patterns and a forecasting model built on retail data.",
+      "tags": ["regression", "clustering", "EDA", "time series"],
+      "status": "planned",
+      "featured": false,
+      "link": "#"
     }
   ],
   "contact": {
     "email": "your@email.com",
+    "blurb": "I'm open to internship opportunities, research collaborations, and connecting with people working at the intersection of data, health, and behavior.",
     "links": [
-      {"platform": "GitHub", "url": "https://github.com/sarahgdjl"},
-      {"platform": "LinkedIn", "url": "https://linkedin.com/in/yourprofile"}
+      { "platform": "GitHub", "url": "https://github.com/sarahgdjl" },
+      { "platform": "LinkedIn", "url": "https://linkedin.com/in/yourprofile" },
+      { "platform": "Kaggle", "url": "https://kaggle.com/yourusername" }
     ]
   }
 }
