@@ -133,12 +133,12 @@ h1.hero-name .line2{display:block;color:transparent;-webkit-text-stroke:1px var(
 
 /* ── PROJECTS ── */
 #projects{background:var(--bg)}
+.projects-stack{display:flex;flex-direction:column;gap:1px}
 
 .project-featured{border:1px solid var(--border);background:var(--surface);position:relative;overflow:hidden;transition:border-color .4s}
 .project-featured:hover{border-color:var(--border2)}
 .project-featured::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .6s cubic-bezier(.23,1,.32,1)}
 .project-featured:hover::before{transform:scaleY(1)}
-
 .project-featured-inner{display:grid;grid-template-columns:1fr 1.3fr;gap:0}
 
 /* left text pane */
@@ -166,6 +166,8 @@ h1.hero-name .line2{display:block;color:transparent;-webkit-text-stroke:1px var(
 .preview-toggle-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--border);background:transparent;color:var(--text3);cursor:none;transition:all .2s}
 .preview-toggle-btn.active-high{border-color:rgba(255,112,67,.5);color:#ff7043;background:rgba(255,112,67,.08)}
 .preview-toggle-btn.active-low{border-color:rgba(43,191,191,.5);color:#2bbfbf;background:rgba(43,191,191,.08)}
+.preview-toggle-btn.active-model{border-color:rgba(123,163,212,.5);color:#7ba3d4;background:rgba(123,163,212,.08)}
+.preview-toggle-btn.active-churn{border-color:rgba(200,169,126,.5);color:#c8a97e;background:rgba(200,169,126,.08)}
 .preview-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-left:auto}
 
 /* browser mockup */
@@ -173,16 +175,36 @@ h1.hero-name .line2{display:block;color:transparent;-webkit-text-stroke:1px var(
 .browser-bar{background:#1a1825;padding:8px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.06)}
 .browser-dots{display:flex;gap:5px}
 .browser-dot{width:8px;height:8px;border-radius:50%}
-.dot-r{background:#ff5f57}
-.dot-y{background:#febc2e}
-.dot-g{background:#28c840}
+.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
 .browser-url{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.03em;margin:0 8px}
-.browser-body{position:relative;line-height:0}
+.browser-body{position:relative;background:#0a0c10;min-height:260px}
 .browser-body img{width:100%;display:block;transition:opacity .4s ease}
 .browser-body img.hidden{opacity:0;position:absolute;top:0;left:0}
 .browser-body img.visible{opacity:1;position:relative}
 
-/* placeholder card for future projects */
+/* ── Churn live viz panel ── */
+.churn-viz{padding:16px;display:none;flex-direction:column;gap:12px}
+.churn-viz.active{display:flex}
+.cviz-title{font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(200,169,126,.5);letter-spacing:.15em;text-transform:uppercase}
+.cviz-kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cviz-kpi{background:rgba(255,255,255,.03);border:1px solid rgba(200,169,126,.1);padding:10px 8px;text-align:center}
+.cviz-kpi-v{font-family:'Cormorant Garamond',serif;font-size:1.5rem;line-height:1;display:block}
+.cviz-kpi-l{font-family:'JetBrains Mono',monospace;font-size:7.5px;color:rgba(157,146,134,.6);letter-spacing:.08em;text-transform:uppercase;margin-top:3px;display:block}
+.cviz-bar-section{display:flex;flex-direction:column;gap:6px}
+.cviz-bar-row{display:flex;align-items:center;gap:8px}
+.cviz-bar-name{font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(157,146,134,.7);width:52px;text-align:right;flex-shrink:0}
+.cviz-bar-track{flex:1;height:6px;background:rgba(255,255,255,.05);border-radius:1px;overflow:hidden}
+.cviz-bar-fill{height:100%;border-radius:1px;transition:width 1.2s cubic-bezier(.16,1,.3,1);width:0}
+.cviz-bar-val{font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(240,236,228,.7);width:32px;flex-shrink:0}
+.cviz-model-section{display:flex;flex-direction:column;gap:5px}
+.cviz-model-row{display:flex;align-items:center;gap:8px}
+.cviz-model-name{font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(157,146,134,.7);width:90px;flex-shrink:0}
+.cviz-model-bar-track{flex:1;height:5px;background:rgba(255,255,255,.05);border-radius:1px;overflow:hidden}
+.cviz-model-bar-fill{height:100%;border-radius:1px;transition:width 1.4s cubic-bezier(.16,1,.3,1);width:0}
+.cviz-model-val{font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(240,236,228,.7);width:44px;text-align:right;flex-shrink:0}
+.cviz-badge{display:inline-flex;font-family:'JetBrains Mono',monospace;font-size:7px;color:#2dd67b;background:rgba(45,214,123,.08);border:1px solid rgba(45,214,123,.2);padding:2px 6px;letter-spacing:.05em;margin-left:4px}
+
+/* placeholder */
 .project-placeholder{border:1px dashed rgba(200,169,126,.12);padding:3.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;margin-top:1px;min-height:180px}
 .placeholder-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:3rem;color:var(--border2)}
 .placeholder-text{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;text-align:center;line-height:1.9}
@@ -416,84 +438,261 @@ footer{position:relative;z-index:1;padding:2rem 4rem;border-top:1px solid var(--
 <section id="projects" class="section-wrap">
   <div class="section-inner">
     <div class="section-label reveal" data-num="03">Projects</div>
+    <div class="projects-stack">
 
-    <div class="project-featured reveal">
-      <div class="project-featured-inner">
-
-        <!-- Left: info -->
-        <div class="project-info">
-          <div>
-            <div class="project-domain">Healthcare · Machine Learning</div>
-            <div class="project-title">CKD Risk<br/>Predictor</div>
-          </div>
-          <p class="project-desc">
-            ML web app that predicts Chronic Kidney Disease risk from patient clinical data — blood work, vitals, and medical history. Built with a Random Forest classifier trained on 400 patients, achieving 100% accuracy on the test set. Deployed as a live interactive diagnostic tool.
-          </p>
-          <div class="project-stat-row">
-            <div class="project-stat">
-              <span class="project-stat-n">400</span>
-              <span class="project-stat-l">Patients</span>
+      <!-- PROJECT 01 — CKD (unchanged) -->
+      <div class="project-featured reveal">
+        <div class="project-featured-inner">
+          <div class="project-info">
+            <div>
+              <div class="project-domain">Healthcare · Machine Learning</div>
+              <div class="project-title">CKD Risk<br/>Predictor</div>
             </div>
-            <div class="project-stat">
-              <span class="project-stat-n">24</span>
-              <span class="project-stat-l">Features</span>
+            <p class="project-desc">
+              ML web app that predicts Chronic Kidney Disease risk from patient clinical data — blood work, vitals, and medical history. Built with a Random Forest classifier trained on 400 patients, achieving 100% accuracy on the test set. Deployed as a live interactive diagnostic tool.
+            </p>
+            <div class="project-stat-row">
+              <div class="project-stat"><span class="project-stat-n">400</span><span class="project-stat-l">Patients</span></div>
+              <div class="project-stat"><span class="project-stat-n">24</span><span class="project-stat-l">Features</span></div>
+              <div class="project-stat"><span class="project-stat-n">100%</span><span class="project-stat-l">Accuracy</span></div>
             </div>
-            <div class="project-stat">
-              <span class="project-stat-n">100%</span>
-              <span class="project-stat-l">Accuracy</span>
+            <div class="project-stack">
+              <span class="project-chip">Python</span>
+              <span class="project-chip">Scikit-learn</span>
+              <span class="project-chip">Random Forest</span>
+              <span class="project-chip">Streamlit</span>
+              <span class="project-chip">Pandas</span>
+              <span class="project-chip">Joblib</span>
+            </div>
+            <div class="project-links">
+              <a href="https://ckd-predictor-first.streamlit.app" target="_blank" class="project-link project-link-primary"><span>↗ Live Demo</span></a>
+              <a href="https://github.com/sarahgdjl/ckd-predictor" target="_blank" class="project-link"><span>⌥ Source Code</span></a>
             </div>
           </div>
-          <div class="project-stack">
-            <span class="project-chip">Python</span>
-            <span class="project-chip">Scikit-learn</span>
-            <span class="project-chip">Random Forest</span>
-            <span class="project-chip">Streamlit</span>
-            <span class="project-chip">Pandas</span>
-            <span class="project-chip">Joblib</span>
-          </div>
-          <div class="project-links">
-            <a href="https://ckd-predictor-first.streamlit.app" target="_blank" class="project-link project-link-primary"><span>↗ Live Demo</span></a>
-            <a href="https://github.com/sarahgdjl/ckd-predictor" target="_blank" class="project-link"><span>⌥ Source Code</span></a>
-          </div>
-        </div>
-
-        <!-- Right: browser preview -->
-        <div class="project-preview">
-          <div class="preview-toggle">
-            <button class="preview-toggle-btn active-high" id="btn-high" onclick="showPreview('high')"><span>⬤</span> High Risk</button>
-            <button class="preview-toggle-btn" id="btn-low" onclick="showPreview('low')"><span>⬤</span> Low Risk</button>
-            <span class="preview-label">Click to switch view</span>
-          </div>
-          <div class="browser-frame">
-            <div class="browser-bar">
-              <div class="browser-dots">
-                <div class="browser-dot dot-r"></div>
-                <div class="browser-dot dot-y"></div>
-                <div class="browser-dot dot-g"></div>
+          <div class="project-preview">
+            <div class="preview-toggle">
+              <button class="preview-toggle-btn active-high" id="btn-high" onclick="showPreview('high')"><span>⬤</span> High Risk</button>
+              <button class="preview-toggle-btn" id="btn-low" onclick="showPreview('low')"><span>⬤</span> Low Risk</button>
+              <span class="preview-label">Click to switch view</span>
+            </div>
+            <div class="browser-frame">
+              <div class="browser-bar">
+                <div class="browser-dots">
+                  <div class="browser-dot dot-r"></div>
+                  <div class="browser-dot dot-y"></div>
+                  <div class="browser-dot dot-g"></div>
+                </div>
+                <div class="browser-url">ckd-predictor-first.streamlit.app</div>
               </div>
-              <div class="browser-url">ckd-predictor-first.streamlit.app</div>
-            </div>
-            <div class="browser-body">
-              <img id="img-high" src="assets/ckd-predictor-yes.png" alt="CKD High Risk prediction" class="visible"/>
-              <img id="img-low"  src="assets/ckd-predictor-no.png"  alt="CKD Low Risk prediction"  class="hidden"/>
+              <div class="browser-body">
+                <img id="img-high" src="assets/ckd-predictor-yes.png" alt="CKD High Risk prediction" class="visible"/>
+                <img id="img-low"  src="assets/ckd-predictor-no.png"  alt="CKD Low Risk prediction"  class="hidden"/>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
-    </div>
 
-    <!-- Placeholder for next project -->
-    <div class="project-placeholder reveal d2">
-      <div class="placeholder-num">02</div>
-      <div class="placeholder-text">Next project in progress<br/><span style="color:var(--border2);font-size:8px;letter-spacing:.1em;">Coming soon</span></div>
-    </div>
+      <!-- PROJECT 02 — BANK CHURN (new) -->
+      <div class="project-featured reveal d2" style="margin-top:1px">
+        <div class="project-featured-inner">
 
+          <!-- Left: info -->
+          <div class="project-info">
+            <div>
+              <div class="project-domain">Finance · Machine Learning · SQL</div>
+              <div class="project-title">Bank Customer<br/>Churn Prediction</div>
+            </div>
+            <p class="project-desc">
+              End-to-end data science pipeline predicting which bank customers will churn across France, Germany, and Spain. Covers EDA, a 3-layer MySQL data warehouse, XGBoost/LightGBM modelling with SHAP explainability, and an interactive analytics dashboard — deployed on GitHub Pages.
+            </p>
+            <div class="project-stat-row">
+              <div class="project-stat">
+                <span class="project-stat-n">10k</span>
+                <span class="project-stat-l">Customers</span>
+              </div>
+              <div class="project-stat">
+                <span class="project-stat-n">0.869</span>
+                <span class="project-stat-l">AUC Score</span>
+              </div>
+              <div class="project-stat">
+                <span class="project-stat-n">5</span>
+                <span class="project-stat-l">Phases</span>
+              </div>
+            </div>
+            <div class="project-stack">
+              <span class="project-chip">Python</span>
+              <span class="project-chip">XGBoost</span>
+              <span class="project-chip">LightGBM</span>
+              <span class="project-chip">SHAP</span>
+              <span class="project-chip">Scikit-learn</span>
+              <span class="project-chip">MySQL</span>
+              <span class="project-chip">SQLAlchemy</span>
+              <span class="project-chip">Pandas</span>
+              <span class="project-chip">HTML/CSS/JS</span>
+            </div>
+            <div class="project-links">
+              <a href="https://sarahgdjl.github.io/bank-customer-churn" target="_blank" class="project-link project-link-primary"><span>↗ Live Dashboard</span></a>
+              <a href="https://github.com/sarahgdjl/bank-customer-churn" target="_blank" class="project-link"><span>⌥ Source Code</span></a>
+            </div>
+          </div>
+
+          <!-- Right: live data viz preview -->
+          <div class="project-preview">
+            <div class="preview-toggle">
+              <button class="preview-toggle-btn active-churn" id="churn-btn-breakdown" onclick="showChurnView('breakdown')"><span>⬤</span> Churn Breakdown</button>
+              <button class="preview-toggle-btn" id="churn-btn-models" onclick="showChurnView('models')"><span>⬤</span> Model Results</button>
+              <span class="preview-label">Live data</span>
+            </div>
+            <div class="browser-frame">
+              <div class="browser-bar">
+                <div class="browser-dots">
+                  <div class="browser-dot dot-r"></div>
+                  <div class="browser-dot dot-y"></div>
+                  <div class="browser-dot dot-g"></div>
+                </div>
+                <div class="browser-url" id="churn-url">sarahgdjl.github.io/bank-customer-churn</div>
+              </div>
+              <div class="browser-body" style="min-height:280px;overflow:hidden">
+
+                <!-- View A: Churn Breakdown -->
+                <div id="churn-view-breakdown" class="churn-viz active">
+                  <div class="cviz-title">Churn Analytics Dashboard · n=10,000</div>
+                  <div class="cviz-kpi-row">
+                    <div class="cviz-kpi">
+                      <span class="cviz-kpi-v" style="color:#e84545">20.4%</span>
+                      <span class="cviz-kpi-l">Churn Rate</span>
+                    </div>
+                    <div class="cviz-kpi">
+                      <span class="cviz-kpi-v" style="color:#c8a97e">€91k</span>
+                      <span class="cviz-kpi-l">Avg Balance Churned</span>
+                    </div>
+                    <div class="cviz-kpi">
+                      <span class="cviz-kpi-v" style="color:#3ecfcf">44.8</span>
+                      <span class="cviz-kpi-l">Avg Age Churned</span>
+                    </div>
+                  </div>
+                  <div class="cviz-bar-section">
+                    <div class="cviz-title" style="margin-bottom:4px">Churn Rate by Geography</div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Germany</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="81" style="background:#e84545"></div></div>
+                      <div class="cviz-bar-val" style="color:#e84545">32.4%</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Spain</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="41.75" style="background:#f0a500"></div></div>
+                      <div class="cviz-bar-val" style="color:#f0a500">16.7%</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">France</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="40.5" style="background:#3ecfcf"></div></div>
+                      <div class="cviz-bar-val" style="color:#3ecfcf">16.2%</div>
+                    </div>
+                  </div>
+                  <div class="cviz-bar-section">
+                    <div class="cviz-title" style="margin-bottom:4px">Churn Rate by Products</div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">4 products</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="100" style="background:#e84545"></div></div>
+                      <div class="cviz-bar-val" style="color:#e84545">100%</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">3 products</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="82.7" style="background:#e84545"></div></div>
+                      <div class="cviz-bar-val" style="color:#ff9a7a">82.7%</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">1 product</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="27.7" style="background:#f0a500"></div></div>
+                      <div class="cviz-bar-val" style="color:#f0a500">27.7%</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">2 products</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="7.6" style="background:#2dd67b"></div></div>
+                      <div class="cviz-bar-val" style="color:#2dd67b">7.6%</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- View B: Model Results -->
+                <div id="churn-view-models" class="churn-viz" style="display:none">
+                  <div class="cviz-title">Phase 3 — Model Performance Comparison</div>
+                  <div class="cviz-kpi-row">
+                    <div class="cviz-kpi">
+                      <span class="cviz-kpi-v" style="color:#2dd67b">0.869</span>
+                      <span class="cviz-kpi-l">Best AUC</span>
+                    </div>
+                    <div class="cviz-kpi">
+                      <span class="cviz-kpi-v" style="color:#c8a97e">0.623</span>
+                      <span class="cviz-kpi-l">F1 Score</span>
+                    </div>
+                    <div class="cviz-kpi">
+                      <span class="cviz-kpi-v" style="color:#7ba3d4">30</span>
+                      <span class="cviz-kpi-l">Features</span>
+                    </div>
+                  </div>
+                  <div class="cviz-model-section">
+                    <div class="cviz-title" style="margin-bottom:6px">ROC-AUC by Model</div>
+                    <div class="cviz-model-row">
+                      <div class="cviz-model-name">XGBoost <span class="cviz-badge">BEST</span></div>
+                      <div class="cviz-model-bar-track"><div class="cviz-model-bar-fill" data-w="87" style="background:#e84545"></div></div>
+                      <div class="cviz-model-val" style="color:#e84545">0.8688</div>
+                    </div>
+                    <div class="cviz-model-row">
+                      <div class="cviz-model-name">LightGBM</div>
+                      <div class="cviz-model-bar-track"><div class="cviz-model-bar-fill" data-w="86.7" style="background:#2dd67b"></div></div>
+                      <div class="cviz-model-val" style="color:#2dd67b">0.8669</div>
+                    </div>
+                    <div class="cviz-model-row">
+                      <div class="cviz-model-name">Logistic Reg.</div>
+                      <div class="cviz-model-bar-track"><div class="cviz-model-bar-fill" data-w="85" style="background:#9467bd"></div></div>
+                      <div class="cviz-model-val" style="color:#9467bd">0.8500</div>
+                    </div>
+                  </div>
+                  <div class="cviz-bar-section" style="margin-top:4px">
+                    <div class="cviz-title" style="margin-bottom:6px">Top Churn Drivers (SHAP)</div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Age</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="95" style="background:#c8a97e"></div></div>
+                      <div class="cviz-bar-val" style="color:#c8a97e">High</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Num Products</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="88" style="background:#c8a97e"></div></div>
+                      <div class="cviz-bar-val" style="color:#c8a97e">High</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Balance</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="72" style="background:#c8a97e"></div></div>
+                      <div class="cviz-bar-val" style="color:#c8a97e">Med</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Is Active</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="65" style="background:#c8a97e"></div></div>
+                      <div class="cviz-bar-val" style="color:#c8a97e">Med</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div><!-- /browser-body -->
+            </div><!-- /browser-frame -->
+          </div><!-- /project-preview -->
+        </div>
+      </div><!-- /project-featured -->
+
+      <!-- Placeholder 03 -->
+      <div class="project-placeholder reveal d3" style="margin-top:1px">
+        <div class="placeholder-num">03</div>
+        <div class="placeholder-text">Next project in progress<br/><span style="color:var(--border2);font-size:8px;letter-spacing:.1em;">Coming soon</span></div>
+      </div>
+
+    </div><!-- /projects-stack -->
   </div>
 </section>
 <div class="h-rule"></div>
 
-<!-- SKILLS -->
+<!-- SKILLS — XGBoost + LightGBM + SHAP promoted to learned -->
 <section id="skills" class="section-wrap">
   <div class="section-inner">
     <div class="section-label reveal" data-num="04">Skills & Stack</div>
@@ -515,8 +714,9 @@ footer{position:relative;z-index:1;padding:2rem 4rem;border-top:1px solid var(--
           <span class="chip">Scikit-learn</span><span class="chip">Regression</span>
           <span class="chip">Classification</span><span class="chip">Clustering</span>
           <span class="chip">Model Evaluation</span>
-          <span class="chip next">XGBoost ↗</span><span class="chip next">LightGBM ↗</span>
-          <span class="chip next">MLflow ↗</span><span class="chip next">Feature Engineering ↗</span>
+          <span class="chip">XGBoost</span><span class="chip">LightGBM</span>
+          <span class="chip">SHAP</span><span class="chip">Feature Engineering</span>
+          <span class="chip next">MLflow ↗</span>
         </div>
       </div>
       <div class="skill-cell">
@@ -538,6 +738,7 @@ footer{position:relative;z-index:1;padding:2rem 4rem;border-top:1px solid var(--
           <span class="chip">Power BI</span><span class="chip">Tableau</span>
           <span class="chip">Matplotlib</span><span class="chip">Seaborn</span>
           <span class="chip">PostgreSQL</span><span class="chip">MySQL</span>
+          <span class="chip">SQLAlchemy</span>
           <span class="chip">MongoDB</span><span class="chip">Git</span><span class="chip">REST APIs</span>
           <span class="chip next">Streamlit ↗</span><span class="chip next">Docker ↗</span><span class="chip next">FastAPI ↗</span>
         </div>
@@ -545,7 +746,7 @@ footer{position:relative;z-index:1;padding:2rem 4rem;border-top:1px solid var(--
     </div>
     <div class="roadmap-banner reveal">
       <span class="roadmap-label">↗ Learn next</span>
-      <p class="roadmap-text">The <strong>gold-highlighted skills</strong> are your practical roadmap to hirability. Priority order: <strong>XGBoost + LightGBM</strong> (every DS job listing wants these), <strong>A/B Testing</strong> (critical for business-facing roles), <strong>Streamlit</strong> (show your work interactively in 2 hours), <strong>MLflow</strong> (model tracking = professionalism), then <strong>Docker + FastAPI</strong> for deployment.</p>
+      <p class="roadmap-text">You've shipped <strong>XGBoost, LightGBM, SHAP, and SQLAlchemy</strong> — those are now in your stack. Priority order for what's next: <strong>A/B Testing</strong> (critical for business-facing roles), <strong>Streamlit</strong> (show your churn model as an interactive app in 2 hours), <strong>MLflow</strong> (model tracking = professionalism), then <strong>Docker + FastAPI</strong> for full deployment readiness.</p>
     </div>
   </div>
 </section>
@@ -604,7 +805,7 @@ footer{position:relative;z-index:1;padding:2rem 4rem;border-top:1px solid var(--
         <a href="mailto:sarahgoudjil19@gmail.com" class="link-row">
           <span class="link-platform">Email</span><span class="link-url">sarahgoudjil19@gmail.com</span><span class="link-arr">→</span>
         </a>
-        <a href="www.linkedin.com/in/Sarah-Goudjil-19201204mk" target="_blank" class="link-row">
+        <a href="https://www.linkedin.com/in/Sarah-Goudjil-19201204mk" target="_blank" class="link-row">
           <span class="link-platform">LinkedIn</span><span class="link-url">Sarah Goudjil LinkedIn</span><span class="link-arr">↗</span>
         </a>
         <a href="https://github.com/sarahgdjl" target="_blank" class="link-row">
@@ -640,12 +841,21 @@ window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scro
 
 // Reveal
 const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+      // Animate churn bars when project card enters view
+      if(e.target.classList.contains('project-featured') && e.target.querySelector('.cviz-bar-fill')){
+        setTimeout(()=>animateChurnBars(), 400);
+      }
+    }
+  });
 },{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 // Marquee
-const items=['Python · Pandas · NumPy','Machine Learning','Statistical Analysis','SQL · PostgreSQL','Power BI · Tableau','Scikit-learn','Hypothesis Testing','Bayesian Analysis','Data Visualization','Git & GitHub','REST APIs','Web Scraping','Agile / Scrum'];
+const items=['Python · Pandas · NumPy','XGBoost · LightGBM · SHAP','Machine Learning','Statistical Analysis','SQL · MySQL · SQLAlchemy','Scikit-learn','Hypothesis Testing','Bayesian Analysis','Data Visualization','Git & GitHub','REST APIs','Feature Engineering','Churn Prediction'];
 const track=document.getElementById('marquee');
 const html=items.map(i=>`<span class="marquee-item"><span class="marquee-dot"></span>${i}</span>`).join('');
 track.innerHTML=html+html;
@@ -656,21 +866,62 @@ window.addEventListener('scroll',()=>{
   if(name)name.style.transform=`translateY(${window.scrollY*.12}px)`;
 });
 
-// Preview toggle
+// CKD Preview toggle
 function showPreview(state){
   const imgHigh=document.getElementById('img-high');
   const imgLow=document.getElementById('img-low');
   const btnHigh=document.getElementById('btn-high');
   const btnLow=document.getElementById('btn-low');
   if(state==='high'){
-    imgHigh.className='visible'; imgLow.className='hidden';
+    imgHigh.className='visible';imgLow.className='hidden';
     btnHigh.className='preview-toggle-btn active-high';
     btnLow.className='preview-toggle-btn';
   } else {
-    imgLow.className='visible'; imgHigh.className='hidden';
+    imgLow.className='visible';imgHigh.className='hidden';
     btnLow.className='preview-toggle-btn active-low';
     btnHigh.className='preview-toggle-btn';
   }
+}
+
+// Churn viz bars animation
+function animateChurnBars(){
+  document.querySelectorAll('.cviz-bar-fill, .cviz-model-bar-fill').forEach(el=>{
+    el.style.width = (el.dataset.w || 0) + '%';
+  });
+}
+
+// Churn view toggle
+function showChurnView(view){
+  const vBreakdown = document.getElementById('churn-view-breakdown');
+  const vModels    = document.getElementById('churn-view-models');
+  const bBreakdown = document.getElementById('churn-btn-breakdown');
+  const bModels    = document.getElementById('churn-btn-models');
+
+  if(view === 'breakdown'){
+    vBreakdown.style.display = 'flex'; vModels.style.display = 'none';
+    bBreakdown.className = 'preview-toggle-btn active-churn';
+    bModels.className    = 'preview-toggle-btn';
+  } else {
+    vModels.style.display = 'flex'; vBreakdown.style.display = 'none';
+    bModels.className    = 'preview-toggle-btn active-model';
+    bBreakdown.className = 'preview-toggle-btn';
+    // re-animate model bars
+    setTimeout(()=>{
+      document.querySelectorAll('.cviz-model-bar-fill').forEach(el=>{
+        el.style.width='0%';
+        requestAnimationFrame(()=>setTimeout(()=>{ el.style.width=(el.dataset.w||0)+'%'; },50));
+      });
+    },50);
+  }
+}
+
+// Trigger bar animation on scroll into view
+const churnCard = document.querySelector('.project-featured:nth-child(2)');
+if(churnCard){
+  const churnObs = new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){ animateChurnBars(); churnObs.disconnect(); }
+  },{threshold:.2});
+  churnObs.observe(churnCard);
 }
 </script>
 </body>
