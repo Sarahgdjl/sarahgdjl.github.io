@@ -168,6 +168,8 @@ h1.hero-name .line2{display:block;color:transparent;-webkit-text-stroke:1px var(
 .preview-toggle-btn.active-low{border-color:rgba(43,191,191,.5);color:#2bbfbf;background:rgba(43,191,191,.08)}
 .preview-toggle-btn.active-model{border-color:rgba(123,163,212,.5);color:#7ba3d4;background:rgba(123,163,212,.08)}
 .preview-toggle-btn.active-churn{border-color:rgba(200,169,126,.5);color:#c8a97e;background:rgba(200,169,126,.08)}
+.preview-toggle-btn.active-hpis-burnout{border-color:rgba(240,165,0,.5);color:#f0a500;background:rgba(240,165,0,.08)}
+.preview-toggle-btn.active-hpis-survival{border-color:rgba(62,207,207,.5);color:#3ecfcf;background:rgba(62,207,207,.08)}
 .preview-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-left:auto}
 
 /* browser mockup */
@@ -682,9 +684,9 @@ footer{position:relative;z-index:1;padding:2rem 4rem;border-top:1px solid var(--
       </div><!-- /project-featured -->
 
       <!-- Placeholder 03 -->
-      <div class="project-placeholder reveal d3" style="margin-top:1px">
-        <div class="placeholder-num">03</div>
-        <div class="placeholder-text">Next project in progress<br/><span style="color:var(--border2);font-size:8px;letter-spacing:.1em;">Coming soon</span></div>
+<div class="project-placeholder reveal d3" style="margin-top:1px">
+  <div class="placeholder-num">03</div>
+  <div class="placeholder-text">Next project in progress<br/>...<span style="color:var(--border2);font-size:8px;letter-spacing:.1em;">Coming soon</span></div>
       </div>
 
     </div><!-- /projects-stack -->
@@ -913,6 +915,49 @@ function showChurnView(view){
       });
     },50);
   }
+}
+
+
+  function showHpisView(view){
+  const vBurnout  = document.getElementById('hpis-view-burnout');
+  const vSurvival = document.getElementById('hpis-view-survival');
+  const bBurnout  = document.getElementById('hpis-btn-burnout');
+  const bSurvival = document.getElementById('hpis-btn-survival');
+
+  if(view === 'burnout'){
+    vBurnout.style.display = 'flex'; vSurvival.style.display = 'none';
+    bBurnout.className  = 'preview-toggle-btn active-hpis-burnout';
+    bSurvival.className = 'preview-toggle-btn';
+    setTimeout(()=>{
+      vBurnout.querySelectorAll('.cviz-bar-fill,.cviz-model-bar-fill').forEach(el=>{
+        el.style.width='0%';
+        requestAnimationFrame(()=>setTimeout(()=>{ el.style.width=(el.dataset.w||0)+'%'; },50));
+      });
+    },50);
+  } else {
+    vSurvival.style.display = 'flex'; vBurnout.style.display = 'none';
+    bSurvival.className = 'preview-toggle-btn active-hpis-survival';
+    bBurnout.className  = 'preview-toggle-btn';
+    setTimeout(()=>{
+      vSurvival.querySelectorAll('.cviz-bar-fill,.cviz-model-bar-fill').forEach(el=>{
+        el.style.width='0%';
+        requestAnimationFrame(()=>setTimeout(()=>{ el.style.width=(el.dataset.w||0)+'%'; },50));
+      });
+    },50);
+  }
+}
+
+const hpisCard = document.querySelector('.project-featured:nth-child(3)');
+if(hpisCard){
+  const hpisObs = new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){
+      hpisCard.querySelectorAll('.cviz-bar-fill,.cviz-model-bar-fill').forEach(el=>{
+        el.style.width = (el.dataset.w || 0) + '%';
+      });
+      hpisObs.disconnect();
+    }
+  },{threshold:.2});
+  hpisObs.observe(hpisCard);
 }
 
 // Trigger bar animation on scroll into view
