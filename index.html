@@ -684,10 +684,190 @@ footer{position:relative;z-index:1;padding:2rem 4rem;border-top:1px solid var(--
       </div><!-- /project-featured -->
 
       <!-- Placeholder 03 -->
-<div class="project-placeholder reveal d3" style="margin-top:1px">
-  <div class="placeholder-num">03</div>
-  <div class="placeholder-text">Next project in progress<br/>...<span style="color:var(--border2);font-size:8px;letter-spacing:.1em;">Coming soon</span></div>
+<!-- PROJECT 03 — HUMAN PERFORMANCE INTELLIGENCE SYSTEM -->
+      <div class="project-featured reveal d3" style="margin-top:1px">
+        <div class="project-featured-inner">
+
+          <div class="project-info">
+            <div>
+              <div class="project-domain">Behavioral Data Science · Survival Analysis · Forecasting</div>
+              <div class="project-title">Human Performance<br/>Intelligence System</div>
+            </div>
+            <p class="project-desc">
+              A 4-module behavioral analytics platform that decodes the psychology of goal achievement — survival-analyzing habit dropout, explaining completion drivers with SHAP, scoring weekly burnout risk, and forecasting peak productivity windows with Prophet. Built on merged Habitica + StudentLife datasets.
+            </p>
+            <div class="project-stat-row">
+              <div class="project-stat">
+                <span class="project-stat-n">4</span>
+                <span class="project-stat-l">Modules</span>
+              </div>
+              <div class="project-stat">
+                <span class="project-stat-n">0–100</span>
+                <span class="project-stat-l">Burnout Index</span>
+              </div>
+              <div class="project-stat">
+                <span class="project-stat-n">7d</span>
+                <span class="project-stat-l">Forecast Horizon</span>
+              </div>
+            </div>
+            <div class="project-stack">
+              <span class="project-chip">Python</span>
+              <span class="project-chip">lifelines</span>
+              <span class="project-chip">XGBoost</span>
+              <span class="project-chip">LightGBM</span>
+              <span class="project-chip">SHAP</span>
+              <span class="project-chip">Prophet</span>
+              <span class="project-chip">Pandas</span>
+              <span class="project-chip">Power BI</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/sarahgdjl/human-performance-intelligence" target="_blank" class="project-link project-link-primary"><span>⌥ Source Code</span></a>
+              <a href="https://nbviewer.org/github/sarahgdjl/human-performance-intelligence/blob/main/notebooks/04_burnout_scoring.ipynb" target="_blank" class="project-link"><span>↗ View Notebooks</span></a>
+            </div>
+          </div>
+
+          <div class="project-preview">
+            <div class="preview-toggle">
+              <button class="preview-toggle-btn active-hpis-burnout" id="hpis-btn-burnout" onclick="showHpisView('burnout')"><span>⬤</span> Burnout Tracker</button>
+              <button class="preview-toggle-btn" id="hpis-btn-survival" onclick="showHpisView('survival')"><span>⬤</span> Habit Survival</button>
+              <span class="preview-label">Live data</span>
+            </div>
+            <div class="browser-frame">
+              <div class="browser-bar">
+                <div class="browser-dots">
+                  <div class="browser-dot dot-r"></div>
+                  <div class="browser-dot dot-y"></div>
+                  <div class="browser-dot dot-g"></div>
+                </div>
+                <div class="browser-url" id="hpis-url">github.com/sarahgdjl/human-performance-intelligence</div>
+              </div>
+              <div class="browser-body" style="min-height:280px;overflow:hidden">
+
+                <div id="hpis-view-burnout" class="churn-viz active">
+                  <div class="cviz-title">Burnout Risk Index (BRI) · Weekly Composite Score</div>
+                  <div class="cviz-kpi-row">
+                    <div class="cviz-kpi">
+                      <span class="cviz-kpi-v" style="color:#f0a500">52.4</span>
+                      <span class="cviz-kpi-l">Avg BRI / 100</span>
+                    </div>
+                    <div class="cviz-kpi">
+                      <span class="cviz-kpi-v" style="color:#e84545">+18.6</span>
+                      <span class="cviz-kpi-l">Deadline Week Spike</span>
+                    </div>
+                    <div class="cviz-kpi">
+                      <span class="cviz-kpi-v" style="color:#7ba3d4">0.812</span>
+                      <span class="cviz-kpi-l">LightGBM AUC</span>
+                    </div>
+                  </div>
+                  <div class="cviz-bar-section">
+                    <div class="cviz-title" style="margin-bottom:4px">Risk Tier Distribution (student-weeks)</div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Critical</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="11" style="background:#8B0000"></div></div>
+                      <div class="cviz-bar-val" style="color:#e84545">11.2%</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">High</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="26" style="background:#e84545"></div></div>
+                      <div class="cviz-bar-val" style="color:#e84545">26.3%</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Moderate</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="38" style="background:#f0a500"></div></div>
+                      <div class="cviz-bar-val" style="color:#f0a500">38.1%</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Low</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="24" style="background:#2dd67b"></div></div>
+                      <div class="cviz-bar-val" style="color:#2dd67b">24.4%</div>
+                    </div>
+                  </div>
+                  <div class="cviz-bar-section" style="margin-top:4px">
+                    <div class="cviz-title" style="margin-bottom:4px">Top Burnout Drivers (SHAP)</div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Sleep debt</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="92" style="background:#c8a97e"></div></div>
+                      <div class="cviz-bar-val" style="color:#c8a97e">High</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">BRI trend</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="78" style="background:#c8a97e"></div></div>
+                      <div class="cviz-bar-val" style="color:#c8a97e">High</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Stress level</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="70" style="background:#c8a97e"></div></div>
+                      <div class="cviz-bar-val" style="color:#c8a97e">Med</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="hpis-view-survival" class="churn-viz" style="display:none">
+                  <div class="cviz-title">Module 1 — Habit Streak Survival (Kaplan-Meier)</div>
+                  <div class="cviz-kpi-row">
+                    <div class="cviz-kpi">
+                      <span class="cviz-kpi-v" style="color:#e84545">3 days</span>
+                      <span class="cviz-kpi-l">Critical Drop-off</span>
+                    </div>
+                    <div class="cviz-kpi">
+                      <span class="cviz-kpi-v" style="color:#2dd67b">+22pp</span>
+                      <span class="cviz-kpi-l">Accountability Lift</span>
+                    </div>
+                    <div class="cviz-kpi">
+                      <span class="cviz-kpi-v" style="color:#7ba3d4">p<0.001</span>
+                      <span class="cviz-kpi-l">Log-Rank Test</span>
+                    </div>
+                  </div>
+                  <div class="cviz-bar-section">
+                    <div class="cviz-title" style="margin-bottom:4px">Day-7 Survival Probability by Category</div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Meditation</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="71" style="background:#2dd67b"></div></div>
+                      <div class="cviz-bar-val" style="color:#2dd67b">71%</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Reading</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="64" style="background:#3ecfcf"></div></div>
+                      <div class="cviz-bar-val" style="color:#3ecfcf">64%</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Fitness</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="48" style="background:#f0a500"></div></div>
+                      <div class="cviz-bar-val" style="color:#f0a500">48%</div>
+                    </div>
+                    <div class="cviz-bar-row">
+                      <div class="cviz-bar-name">Sleep</div>
+                      <div class="cviz-bar-track"><div class="cviz-bar-fill" data-w="35" style="background:#e84545"></div></div>
+                      <div class="cviz-bar-val" style="color:#e84545">35%</div>
+                    </div>
+                  </div>
+                  <div class="cviz-model-section" style="margin-top:4px">
+                    <div class="cviz-title" style="margin-bottom:6px">Cox PH — Quit Risk Factors (Hazard Ratio)</div>
+                    <div class="cviz-model-row">
+                      <div class="cviz-model-name">Difficulty: hard</div>
+                      <div class="cviz-model-bar-track"><div class="cviz-model-bar-fill" data-w="80" style="background:#e84545"></div></div>
+                      <div class="cviz-model-val" style="color:#e84545">HR 2.14</div>
+                    </div>
+                    <div class="cviz-model-row">
+                      <div class="cviz-model-name">No accountability</div>
+                      <div class="cviz-model-bar-track"><div class="cviz-model-bar-fill" data-w="65" style="background:#e84545"></div></div>
+                      <div class="cviz-model-val" style="color:#e84545">HR 1.68</div>
+                    </div>
+                    <div class="cviz-model-row">
+                      <div class="cviz-model-name">Has accountability</div>
+                      <div class="cviz-model-bar-track"><div class="cviz-model-bar-fill" data-w="38" style="background:#2dd67b"></div></div>
+                      <div class="cviz-model-val" style="color:#2dd67b">HR 0.61</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+</parameter>
+<parameter name="path">/home/claude/fix/hpis_card_final.html</parameter>
 
     </div><!-- /projects-stack -->
   </div>
